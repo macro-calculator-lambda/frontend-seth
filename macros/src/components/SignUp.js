@@ -1,4 +1,10 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const Container = styled.div`
+	margin: 0 auto;
+	max-width: 1200px;
+`;
 
 class SignUp extends React.Component {
 	constructor() {
@@ -8,33 +14,82 @@ class SignUp extends React.Component {
 			userInfo: {
 				username: '',
 				password: '',
-				height: '',
-				weight: ''
+				gender: 'male',
+				age: '',
+				height: 67,
+				weight: '',
+				exercise: 0,
+				goal: -20
 			}
 		};
 	}
 
+	handleChange = (event) => {
+		this.setState({
+			userInfo: {
+				...this.state.userInfo,
+				[event.target.name]: event.target.value
+			}
+		});
+	};
+
 	render() {
 		return (
-			<div>
+			<Container>
 				<h1>Sign Up Below</h1>
 				<div>
 					<form>
 						<div>
-							<input type="text" name="username" placeholder="Username" />
+							<input
+								onChange={this.handleChange}
+								value={this.state.userInfo.username}
+								type="text"
+								name="username"
+								placeholder="Username"
+							/>
 						</div>
 						<div>
-							<input type="password" name="password" placeholder="Password" />
+							<input
+								onChange={this.handleChange}
+								value={this.state.userInfo.password}
+								type="password"
+								name="password"
+								placeholder="Password"
+							/>
 						</div>
 						<div>
-							<input type="text" name="gender" placeholder="Gender" />
+							<label htmlFor="gender">Gender: </label>
+							<select
+								onChange={this.handleChange}
+								value={this.state.userInfo.gender}
+								name="gender"
+								id="gender"
+							>
+								<option value="male">Male</option>
+								<option value="female">Female</option>
+							</select>
 						</div>
 						<div>
-							<input type="number" name="age" placeholder="Age" />
+							<input
+								onChange={this.handleChange}
+								value={this.state.userInfo.age}
+								type="number"
+								name="age"
+								placeholder="Age"
+							/>
 						</div>
 						<div>
-							<label for="user-height">Select your Height:</label>
-							<select name="height" id="user-height">
+							<label htmlFor="user-height">Select your Height:</label>
+							<select
+								onChange={this.handleChange}
+								name="height"
+								id="user-height"
+								value={this.state.userInfo.height}
+							>
+								<option value="63">5' 3"</option>
+								<option value="64">5' 4"</option>
+								<option value="65">5' 5"</option>
+								<option value="66">5' 6"</option>
 								<option value="67">5' 7"</option>
 								<option value="68">5' 8"</option>
 								<option value="69">5' 9"</option>
@@ -44,11 +99,22 @@ class SignUp extends React.Component {
 							</select>
 						</div>
 						<div>
-							<input type="number" name="weight" placeholder="Weight in pounds" />
+							<input
+								onChange={this.handleChange}
+								value={this.state.userInfo.weight}
+								type="number"
+								name="weight"
+								placeholder="Weight in pounds"
+							/>
 						</div>
 						<div>
-							<label for="exercise-total">Exercise per week:</label>
-							<select name="exercise" id="exercise-total">
+							<label htmlFor="exercise-total">Exercise per week:</label>
+							<select
+								onChange={this.handleChange}
+								value={this.state.userInfo.exercise}
+								name="exercise"
+								id="exercise-total"
+							>
 								<option value="0">0 days</option>
 								<option value="1">1-2 days</option>
 								<option value="3">3-4 days</option>
@@ -57,8 +123,8 @@ class SignUp extends React.Component {
 							</select>
 						</div>
 						<div>
-							<label for="goal">Select your Goal:</label>
-							<select name="goal" id="goal">
+							<label htmlFor="goal">Select your Goal:</label>
+							<select onChange={this.handleChange} value={this.state.userInfo.goal} name="goal" id="goal">
 								<option value="-20">Agressive Weight Loss (20%)</option>
 								<option value="-15">Moderate Weight Loss (15%)</option>
 								<option value="-10">Weight Loss (10%)</option>
@@ -71,7 +137,7 @@ class SignUp extends React.Component {
 						<button>Sign Up</button>
 					</form>
 				</div>
-			</div>
+			</Container>
 		);
 	}
 }
