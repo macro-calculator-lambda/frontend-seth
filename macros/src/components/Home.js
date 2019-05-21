@@ -45,15 +45,19 @@ const Home = props => {
     goals[props.user.goal]
   );
 
+  let protein = Math.floor(totalCalories * 0.075);
+  let carbs = Math.floor(totalCalories * 0.1);
+  let fat = Math.floor(totalCalories * 0.033);
+
   return (
     <div>
       <h1>Home</h1>
       <p>Total Calories Per day: {Math.floor(totalCalories)}</p>
       <p>Macros: </p>
       <ul>
-        <li>Protein: {Math.floor(totalCalories * 0.075)} grams</li>
-        <li>Carbs: {Math.floor(totalCalories * 0.1)} grams</li>
-        <li>Fat: {Math.floor(totalCalories * 0.033)} grams</li>
+        <li>Protein: {protein} grams</li>
+        <li>Carbs: {carbs} grams</li>
+        <li>Fat: {fat} grams</li>
       </ul>
       <p />
     </div>
