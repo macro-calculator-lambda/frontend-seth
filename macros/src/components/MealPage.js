@@ -1,7 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { goals, sampleDays, meals, calculateCalories } from "../utils";
+import {
+  meals,
+  calculateCalories,
+  protein,
+  carbs,
+  fat,
+  macroCalculator,
+  calculatePerMeal
+} from "../utils";
 
 class MealPage extends React.Component {
   constructor() {
@@ -21,27 +29,10 @@ class MealPage extends React.Component {
   render() {
     let totalCalories = calculateCalories(this.props.user);
 
-    let protein = Math.ceil(totalCalories * 0.075);
-    let carbs = Math.ceil(totalCalories * 0.1);
-    let fat = Math.ceil(totalCalories * 0.033);
-
-    function calculatePerMeal(macro, meal) {
-      switch (meal) {
-        case 2:
-          return `${Math.ceil(macro / 8) * 2} grams per meal and ${Math.ceil(
-            macro / 8
-          )} grams per snack`;
-        case 4:
-        case 3:
-          return `${Math.ceil(macro / meal)} grams per meal`;
-        default:
-          return "";
-      }
-    }
     return (
       <div>
         <h2>Meal Page</h2>
-        <select name="mealPlan" id="" onChange={this.handleChange}>
+        <select name="mealPlan" id="meal-select" onChange={this.handleChange}>
           <option value="">Choose a Meal Plan</option>
           <option value="four">4 meals a day</option>
           <option value="three">3 Meals Per day</option>
@@ -49,17 +40,29 @@ class MealPage extends React.Component {
         </select>
         <div>
           <h3>Meal Breakdown</h3>
-          <ul>
-            <li>
+          <div>
+            <div>
               Protein:
-              {calculatePerMeal(protein, meals[this.state.mealPlan])}
-            </li>
-            <li>
+              {calculatePerMeal(
+                macroCalculator(totalCalories, protein),
+                meals[this.state.mealPlan]
+              )}
+            </div>
+            <div>
               Carbs:
-              {calculatePerMeal(carbs, meals[this.state.mealPlan])}
-            </li>
-            <li>Fat: {calculatePerMeal(fat, meals[this.state.mealPlan])}</li>
-          </ul>
+              {calculatePerMeal(
+                macroCalculator(totalCalories, carbs),
+                meals[this.state.mealPlan]
+              )}
+            </div>
+            <div>
+              Fat:
+              {calculatePerMeal(
+                macroCalculator(totalCalories, fat),
+                meals[this.state.mealPlan]
+              )}
+            </div>
+          </div>
         </div>
       </div>
     );

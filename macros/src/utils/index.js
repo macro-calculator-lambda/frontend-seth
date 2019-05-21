@@ -22,19 +22,42 @@ export const meals = {
 };
 
 export const calculateCalories = user => {
-  if (user === "female") {
-    let femaleWeight = 4.35 * user.weight;
-    let femaleHeight = 4.7 * user.height;
-    let femaleAge = 4.5 * user.age;
+  if (user.gender === "female") {
+    const femaleWeight = 4.35 * user.weight;
+    const femaleHeight = 4.7 * user.height;
+    const femaleAge = 4.5 * user.age;
 
-    let femaleBMR = 655 + femaleWeight + femaleHeight - femaleAge;
+    const femaleBMR = 655 + femaleWeight + femaleHeight - femaleAge;
     return femaleBMR * sampleDays[user.exerciseDays] * goals[user.goal];
   } else {
-    let maleWeight = 6.23 * user.weight;
-    let maleHeight = 12.7 * user.height;
-    let maleAge = 6.8 * user.age;
+    const maleWeight = 6.23 * user.weight;
+    const maleHeight = 12.7 * user.height;
+    const maleAge = 6.8 * user.age;
 
-    let maleBMR = 66 + maleWeight + maleHeight - maleAge;
+    const maleBMR = 66 + maleWeight + maleHeight - maleAge;
+
     return maleBMR * sampleDays[user.exerciseDays] * goals[user.goal];
+  }
+};
+
+export const protein = 0.075;
+export const carbs = 0.1;
+export const fat = 0.033;
+
+export const macroCalculator = (totalCal, macro) => {
+  return Math.ceil(totalCal * macro);
+};
+
+export const calculatePerMeal = (macro, meal) => {
+  switch (meal) {
+    case 2:
+      return `${Math.ceil(macro / 8) * 2} grams per meal and ${Math.ceil(
+        macro / 8
+      )} grams per snack`;
+    case 4:
+    case 3:
+      return `${Math.ceil(macro / meal)} grams per meal`;
+    default:
+      return "";
   }
 };
