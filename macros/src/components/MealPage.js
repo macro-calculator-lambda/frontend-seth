@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 
+import { goals, sampleDays, meals, calculateCalories } from "../utils";
+
 class MealPage extends React.Component {
   constructor() {
     super();
@@ -17,54 +19,7 @@ class MealPage extends React.Component {
   };
 
   render() {
-    let femaleWeight = 4.35 * this.props.user.weight;
-    let femaleHeight = 4.7 * this.props.user.height;
-    let femaleAge = 4.5 * this.props.user.age;
-
-    let femaleBMR = 655 + femaleWeight + femaleHeight - femaleAge;
-
-    let maleBMR =
-      66 +
-      6.23 * this.props.user.weight +
-      12.7 * this.props.user.height -
-      6.8 * this.props.user.age;
-
-    let sampleDays = {
-      0: 1.2,
-      1: 1.375,
-      3: 1.55,
-      5: 1.725,
-      7: 1.9
-    };
-
-    let goals = {
-      "aggressive-loss": 0.8,
-      "moderate-loss": 0.85,
-      "small-loss": 0.9,
-      maintain: 1,
-      "moderate-gain": 1.1,
-      "aggressive-gain": 1.15
-    };
-
-    let meals = {
-      four: 4,
-      three: 3,
-      snack: 2
-    };
-
-    function calculateCalories(gender, days, goal) {
-      if (gender === "female") {
-        return femaleBMR * days * goal;
-      } else {
-        return maleBMR * days * goal;
-      }
-    }
-
-    let totalCalories = calculateCalories(
-      this.props.user.gender,
-      sampleDays[this.props.user.exerciseDays],
-      goals[this.props.user.goal]
-    );
+    let totalCalories = calculateCalories(this.props.user);
 
     let protein = Math.ceil(totalCalories * 0.075);
     let carbs = Math.ceil(totalCalories * 0.1);
@@ -79,6 +34,8 @@ class MealPage extends React.Component {
         case 4:
         case 3:
           return `${Math.ceil(macro / meal)} grams per meal`;
+        default:
+          return "";
       }
     }
     return (
