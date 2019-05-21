@@ -5,6 +5,7 @@ import Navigation from './components/Navigation';
 import Home from './components/Home';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
+import MealPage from './components/MealPage';
 import './App.css';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
 			<Route exact path="/" component={Home} />
 			<Route path="/login" component={Login} />
 			<Route path="/sign-up" component={SignUp} />
+			<Route path="/meal-page" component={MealPage} />
 		</Router>
 	);
 }
