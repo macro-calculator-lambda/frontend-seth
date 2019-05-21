@@ -173,21 +173,6 @@ class Register extends React.Component {
   }
 }
 
-// const mapStateToProps = state => {
-//   return {
-//     user: {
-//       username: state.user.username,
-//       password: state.user.password,
-//       gender: state.user.gender,
-//       age: state.user.age,
-//       height: state.user.height,
-//       weight: state.user.weight,
-//       exerciseDays: state.user.exerciseDays,
-//       goal: state.user.goal
-//     }
-//   };
-// };
-
 export default connect(
   null,
   { signup }

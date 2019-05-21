@@ -26,9 +26,8 @@ export const calculateCalories = user => {
     const femaleWeight = 4.35 * user.weight;
     const femaleHeight = 4.7 * user.height;
     const femaleAge = 4.5 * user.age;
-
     const femaleBMR = 655 + femaleWeight + femaleHeight - femaleAge;
-    return femaleBMR * sampleDays[user.exerciseDays] * goals[user.goal];
+    return femaleBMR * sampleDays[user.exercise] * goals[user.goal];
   } else {
     const maleWeight = 6.23 * user.weight;
     const maleHeight = 12.7 * user.height;
@@ -36,7 +35,7 @@ export const calculateCalories = user => {
 
     const maleBMR = 66 + maleWeight + maleHeight - maleAge;
 
-    return maleBMR * sampleDays[user.exerciseDays] * goals[user.goal];
+    return maleBMR * sampleDays[user.exercise] * goals[user.goal];
   }
 };
 

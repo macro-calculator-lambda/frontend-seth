@@ -4,21 +4,26 @@ import {
   LOGIN_FAIL,
   SIGNUP_INITIALIZE,
   SIGNUP_SUCCESS,
-  SIGNUP_FAIL
+  SIGNUP_FAIL,
+  FETCH_USER_INITIALIZE,
+  FETCH_USER_SUCCESS,
+  FETCH_USER_FAIL
 } from "../actions";
 
 const initialState = {
   isLoggingIn: false,
   isSigningUp: false,
+  fetchingUser: false,
   error: "",
+  id: "",
   user: {
     username: "",
-    password: "",
+    id: "",
     gender: "",
     age: "",
     height: "",
     weight: "",
-    exerciseDays: "",
+    exercise: "",
     goal: ""
   }
 };
@@ -34,8 +39,7 @@ const reducer = (state = initialState, action) => {
     case SIGNUP_SUCCESS:
       return {
         ...state,
-        isSigningUp: false,
-        user: action.payload
+        isSigningUp: false
       };
     case SIGNUP_FAIL: {
       return {
@@ -53,12 +57,32 @@ const reducer = (state = initialState, action) => {
     case LOGIN_SUCCESS:
       return {
         ...state,
-        isLoggingIn: false
+        isLoggingIn: false,
+        id: action.payload
       };
     case LOGIN_FAIL:
       return {
         ...state,
         isLoggingIn: false
+      };
+    case FETCH_USER_INITIALIZE:
+      return {
+        ...state,
+        fetchingUser: true,
+        error: ""
+      };
+    case FETCH_USER_SUCCESS:
+      return {
+        ...state,
+        fetchingUser: false,
+        user: action.payload,
+        error: ""
+      };
+    case FETCH_USER_FAIL:
+      return {
+        ...state,
+        fetchingUser: false,
+        error: action.payload
       };
     default:
       return state;

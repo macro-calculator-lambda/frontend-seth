@@ -12,7 +12,8 @@ export const login = credentials => dispatch => {
     .post(`https://bwmc-backend.herokuapp.com/api/login`, credentials)
     .then(res => {
       localStorage.setItem("token", res.data.token);
-      dispatch({ type: LOGIN_SUCCESS, payload: res.data });
+      localStorage.setItem("id", res.data.id);
+      dispatch({ type: LOGIN_SUCCESS, payload: res.data.id });
     })
     .catch(err => {
       console.log(err);
@@ -26,8 +27,25 @@ export const SIGNUP_FAIL = "SIGNUP_FAIL";
 export const signup = userData => dispatch => {
   dispatch({ type: SIGNUP_INITIALIZE });
 
-  return axios
-    .post(`https://bwmc-backend.herokuapp.com/api/register`, userData)
-    .then(res => console.log(res))
-    .catch(err => console.log(err));
+  return (
+    axios
+      .post(`https://bwmc-backend.herokuapp.com/api/register`, userData)
+      .then(res => console.log(res))
+      // .then(res => ({ type: SIGNUP_SUCCESS, payload: res.data.id }))
+      .catch(err => console.log(err))
+  );
+};
+
+export const FETCH_USER_INITIALIZE = "FETCH_USER_INITIALIZE";
+export const FETCH_USER_SUCCESS = "FETCH_USER_SUCCESS";
+export const FETCH_USER_FAIL = "FETCH_USER_FAIL";
+
+export const getUserInfo = id => dispatch => {
+  dispatch({ type: FETCH_USER_INITIALIZE });
+
+  axiosWithAuth()
+    .get(`https://bwmc-backend.herokuapp.com/api/users/${id}`)
+    // .then(res => console.log(res))
+    .then(res => dispatch({ type: FETCH_USER_SUCCESS, payload: res.data }))
+    .catch(err => dispatch({ type: FETCH_USER_FAIL, payload: err }));
 };

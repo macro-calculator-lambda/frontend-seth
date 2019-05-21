@@ -3,29 +3,37 @@ import { connect } from "react-redux";
 import { PieChart } from "react-chartkick";
 import Chart from "chart.js";
 
-import { axiosWithAuth } from "../axiosWithAuth";
+import { getUserInfo } from "../actions";
 
 import { calculateCalories, macroCalculator, macros } from "../utils";
 
 class Home extends React.Component {
   constructor() {
     super();
-    this.state = {};
   }
 
   componentDidMount() {
-    axiosWithAuth()
-      .get(`https://bwmc-backend.herokuapp.com/api/users/2`)
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
+    this.props.getUserInfo(localStorage.getItem("id"));
   }
 
   render() {
+    if (this.props.fetchingUser) {
+      return (
+        <div>
+          <h2>Fetching Info...</h2>
+        </div>
+      );
+    }
     const totalCalories = calculateCalories(this.props.user);
+
     return (
       <div>
         <h1>Home</h1>
-        <p>Total Calories Per day: {Math.ceil(totalCalories)}</p>
+        <p>{this.props.user.username}</p>
+        <p>
+          Total Calories Per day:{" "}
+          {Math.ceil(calculateCalories(this.props.user))}
+        </p>
         <div>
           <h2>Macro Breakdown</h2>
           {
@@ -56,13 +64,17 @@ class Home extends React.Component {
 }
 
 const mapStateToProps = state => {
+  // console.log(state);
   return {
+    id: state.id,
     user: {
+      username: state.user.username,
+      id: state.user.id,
       gender: state.user.gender,
       age: state.user.age,
       height: state.user.height,
       weight: state.user.weight,
-      exerciseDays: state.user.exerciseDays,
+      exercise: state.user.exercise,
       goal: state.user.goal
     }
   };
@@ -70,5 +82,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {}
+  { getUserInfo }
 )(Home);

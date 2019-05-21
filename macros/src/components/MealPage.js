@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 
+import { getUserInfo } from "../actions";
+
 import {
   meals,
   calculateCalories,
@@ -15,6 +17,10 @@ class MealPage extends React.Component {
     this.state = {
       mealPlan: ""
     };
+  }
+
+  componentDidMount() {
+    this.props.getUserInfo(localStorage.getItem("id"));
   }
 
   handleChange = event => {
@@ -59,12 +65,15 @@ class MealPage extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    id: state.id,
     user: {
+      username: state.user.username,
+      id: state.user.id,
       gender: state.user.gender,
       age: state.user.age,
       height: state.user.height,
       weight: state.user.weight,
-      exerciseDays: state.user.exerciseDays,
+      exercise: state.user.exercise,
       goal: state.user.goal
     }
   };
@@ -72,5 +81,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {}
+  { getUserInfo }
 )(MealPage);
