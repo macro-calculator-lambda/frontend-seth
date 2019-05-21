@@ -1,20 +1,49 @@
-import { LOGIN_INITIALIZE, LOGIN_SUCCESS, LOGIN_FAIL } from "../actions";
+import {
+  LOGIN_INITIALIZE,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+  SIGNUP_INITIALIZE,
+  SIGNUP_SUCCESS,
+  SIGNUP_FAIL
+} from "../actions";
 
 const initialState = {
   isLoggingIn: false,
+  isSigningUp: false,
   error: "",
   user: {
-    gender: "female",
-    age: 27,
-    height: 70,
-    weight: 151,
-    exerciseDays: 1,
-    goal: "moderate-loss"
+    username: "",
+    password: "",
+    gender: "",
+    age: "",
+    height: "",
+    weight: "",
+    exerciseDays: "",
+    goal: ""
   }
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case SIGNUP_INITIALIZE:
+      return {
+        ...state,
+        isSigningUp: true,
+        error: ""
+      };
+    case SIGNUP_SUCCESS:
+      return {
+        ...state,
+        isSigningUp: false,
+        user: action.payload
+      };
+    case SIGNUP_FAIL: {
+      return {
+        ...state,
+        isSigningUp: false,
+        error: action.payload
+      };
+    }
     case LOGIN_INITIALIZE:
       return {
         ...state,

@@ -1,12 +1,15 @@
 import React from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
+
+import { signup } from "../actions";
 
 const Container = styled.div`
   margin: 0 auto;
   max-width: 1200px;
 `;
 
-class SignUp extends React.Component {
+class Register extends React.Component {
   constructor() {
     super();
 
@@ -25,6 +28,10 @@ class SignUp extends React.Component {
   }
 
   handleChange = event => {
+    let value = event.target.value;
+    if (event.target.name === "age" || event.target.name === "weight") {
+      value = parseInt(value, 10);
+    }
     this.setState({
       userInfo: {
         ...this.state.userInfo,
@@ -33,12 +40,19 @@ class SignUp extends React.Component {
     });
   };
 
+  handleSubmit = event => {
+    event.preventDefault();
+    this.props.signup(this.state.userInfo).then(() => {
+      this.props.history.push("/login");
+    });
+  };
+
   render() {
     return (
       <Container>
         <h1>Sign Up Below</h1>
         <div>
-          <form>
+          <form onSubmit={this.handleSubmit}>
             <div>
               <input
                 onChange={this.handleChange}
@@ -134,12 +148,20 @@ class SignUp extends React.Component {
                 id="goal"
               >
                 <option value="">Select Goal</option>
-                <option value="-20">Agressive Weight Loss (20%)</option>
-                <option value="-15">Moderate Weight Loss (15%)</option>
-                <option value="-10">Weight Loss (10%)</option>
-                <option value="0">Maintain Weight</option>
-                <option value="10">Moderate Weight Gain (10%)</option>
-                <option value="15">Agressive Weight Gain (15%)</option>
+                <option value="aggressive-loss">
+                  Agressive Weight Loss (20%)
+                </option>
+                <option value="moderate-loss">
+                  Moderate Weight Loss (15%)
+                </option>
+                <option value="small-loss">Weight Loss (10%)</option>
+                <option value="maintain">Maintain Weight</option>
+                <option value="moderate-gain">
+                  Moderate Weight Gain (10%)
+                </option>
+                <option value="aggressive-gain">
+                  Agressive Weight Gain (15%)
+                </option>
               </select>
             </div>
 
@@ -151,4 +173,22 @@ class SignUp extends React.Component {
   }
 }
 
-export default SignUp;
+// const mapStateToProps = state => {
+//   return {
+//     user: {
+//       username: state.user.username,
+//       password: state.user.password,
+//       gender: state.user.gender,
+//       age: state.user.age,
+//       height: state.user.height,
+//       weight: state.user.weight,
+//       exerciseDays: state.user.exerciseDays,
+//       goal: state.user.goal
+//     }
+//   };
+// };
+
+export default connect(
+  null,
+  { signup }
+)(Register);
