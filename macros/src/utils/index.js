@@ -40,9 +40,20 @@ export const calculateCalories = user => {
   }
 };
 
-export const protein = 0.075;
-export const carbs = 0.1;
-export const fat = 0.033;
+export const macros = [
+  {
+    name: "Protein",
+    value: 0.075
+  },
+  {
+    name: "Carbs",
+    value: 0.1
+  },
+  {
+    name: "Fat",
+    value: 0.033
+  }
+];
 
 export const macroCalculator = (totalCal, macro) => {
   return Math.ceil(totalCal * macro);

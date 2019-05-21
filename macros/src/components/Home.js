@@ -1,16 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import {
-  calculateCalories,
-  protein,
-  carbs,
-  fat,
-  macroCalculator
-} from "../utils";
+import { calculateCalories, macroCalculator, macros } from "../utils";
 
 const Home = props => {
-  let totalCalories = calculateCalories(props.user);
+  const totalCalories = calculateCalories(props.user);
 
   return (
     <div>
@@ -18,9 +12,13 @@ const Home = props => {
       <p>Total Calories Per day: {Math.ceil(totalCalories)}</p>
       <p>Macros: </p>
       <ul>
-        <li>Protein: {macroCalculator(totalCalories, protein)} grams</li>
-        <li>Carbs: {macroCalculator(totalCalories, carbs)} grams</li>
-        <li>Fat: {macroCalculator(totalCalories, fat)} grams</li>
+        {macros.map((macro, index) => {
+          return (
+            <li key={index}>
+              {macro.name}: {macroCalculator(totalCalories, macro.value)}
+            </li>
+          );
+        })}
       </ul>
       <p />
     </div>

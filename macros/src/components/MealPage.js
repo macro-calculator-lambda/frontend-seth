@@ -4,11 +4,9 @@ import { connect } from "react-redux";
 import {
   meals,
   calculateCalories,
-  protein,
-  carbs,
-  fat,
   macroCalculator,
-  calculatePerMeal
+  calculatePerMeal,
+  macros
 } from "../utils";
 
 class MealPage extends React.Component {
@@ -27,7 +25,7 @@ class MealPage extends React.Component {
   };
 
   render() {
-    let totalCalories = calculateCalories(this.props.user);
+    const totalCalories = calculateCalories(this.props.user);
 
     return (
       <div>
@@ -41,27 +39,17 @@ class MealPage extends React.Component {
         <div>
           <h3>Meal Breakdown</h3>
           <div>
-            <div>
-              Protein:
-              {calculatePerMeal(
-                macroCalculator(totalCalories, protein),
-                meals[this.state.mealPlan]
-              )}
-            </div>
-            <div>
-              Carbs:
-              {calculatePerMeal(
-                macroCalculator(totalCalories, carbs),
-                meals[this.state.mealPlan]
-              )}
-            </div>
-            <div>
-              Fat:
-              {calculatePerMeal(
-                macroCalculator(totalCalories, fat),
-                meals[this.state.mealPlan]
-              )}
-            </div>
+            {macros.map((macro, index) => {
+              return (
+                <div key={index}>
+                  <h4>{macro.name}</h4>
+                  {calculatePerMeal(
+                    macroCalculator(totalCalories, macro.value),
+                    meals[this.state.mealPlan]
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
