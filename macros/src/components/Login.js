@@ -1,13 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import {
-  Container,
-  Title,
-  FormContainer,
-  Form,
-  Input,
-  Button
-} from "../styles";
+import { Title, FormContainer, Form, Input, Button } from "../styles";
 import { login } from "../actions";
 
 class Login extends React.Component {
