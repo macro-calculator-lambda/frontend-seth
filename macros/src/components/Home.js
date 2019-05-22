@@ -2,27 +2,23 @@ import React from "react";
 import { connect } from "react-redux";
 import { PieChart } from "react-chartkick";
 import Chart from "chart.js";
+import Loader from "react-loader-spinner";
 
 import { getUserInfo } from "../actions";
 import { Container, Title } from "../styles";
-import { login } from "../actions";
 
 import { calculateCalories, macroCalculator, macros } from "../utils";
 
 class Home extends React.Component {
-  constructor() {
-    super();
-  }
-
   componentDidMount() {
     this.props.getUserInfo(localStorage.getItem("id"));
   }
 
   render() {
-    if (this.props.fetchingUser) {
+    if (!this.props.user) {
       return (
         <Container>
-          <h2>Fetching Info...</h2>
+          <Loader type="ThreeDots" color="#1f2a38" height="50" width="50" />
         </Container>
       );
     }
@@ -30,7 +26,7 @@ class Home extends React.Component {
 
     return (
       <Container>
-        <h1>Home</h1>
+        <Title>Home</Title>
         <p />
         <p>
           Recommended Total Calories Per day for {this.props.user.username}:
@@ -67,7 +63,6 @@ class Home extends React.Component {
 }
 
 const mapStateToProps = state => {
-  // console.log(state);
   return {
     id: state.id,
     user: {
