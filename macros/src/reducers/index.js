@@ -7,13 +7,17 @@ import {
   SIGNUP_FAIL,
   FETCH_USER_INITIALIZE,
   FETCH_USER_SUCCESS,
-  FETCH_USER_FAIL
+  FETCH_USER_FAIL,
+  UPDATE_USER_INITIALIZE,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_FAIL
 } from "../actions";
 
 const initialState = {
   isLoggingIn: false,
   isSigningUp: false,
   fetchingUser: false,
+  editingUser: false,
   error: "",
   id: "",
   user: {
@@ -63,7 +67,8 @@ const reducer = (state = initialState, action) => {
     case LOGIN_FAIL:
       return {
         ...state,
-        isLoggingIn: false
+        isLoggingIn: false,
+        error: action.payload
       };
     case FETCH_USER_INITIALIZE:
       return {
@@ -83,6 +88,22 @@ const reducer = (state = initialState, action) => {
         ...state,
         fetchingUser: false,
         error: action.payload
+      };
+    case UPDATE_USER_INITIALIZE:
+      return {
+        ...state,
+        editingUser: true,
+        error: ""
+      };
+    case UPDATE_USER_SUCCESS:
+      return {
+        ...state,
+        editingUser: false
+      };
+    case UPDATE_USER_FAIL:
+      return {
+        ...state,
+        editingUser: false
       };
     default:
       return state;

@@ -1,6 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
-
+import {
+  Container,
+  Title,
+  FormContainer,
+  Form,
+  Input,
+  Button
+} from "../styles";
 import { login } from "../actions";
 
 class Login extends React.Component {
@@ -33,33 +40,35 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Login Below</h1>
-        <form onSubmit={this.handleSubmit}>
-          <input
+      <FormContainer>
+        <Title>Login Below</Title>
+        {this.props.error && <p>{this.props.error}</p>}
+        <Form onSubmit={this.handleSubmit}>
+          <Input
             value={this.state.credentials.username}
             name="username"
             onChange={this.handleChange}
             type="text"
             placeholder="Username"
           />
-          <input
+          <Input
             value={this.state.credentials.password}
             name="password"
             onChange={this.handleChange}
             type="password"
             placeholder="Password"
           />
-          <button>Login</button>
-        </form>
-      </div>
+          <Button>Login</Button>
+        </Form>
+      </FormContainer>
     );
   }
 }
 
 const mapStateToProps = state => {
   return {
-    isLoggingIn: state.isLoggingIn
+    isLoggingIn: state.isLoggingIn,
+    error: state.error
   };
 };
 
