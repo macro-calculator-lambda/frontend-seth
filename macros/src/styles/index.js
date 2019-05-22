@@ -5,6 +5,10 @@ export const Container = styled.div`
   max-width: 1200px;
 `;
 
+export const Title = styled.h1`
+  font-size: 1.8rem;
+`;
+
 export const FormContainer = styled.div`
   margin: 0 auto;
   max-width: 500px;

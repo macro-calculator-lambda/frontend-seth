@@ -3,6 +3,18 @@ import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
 
 import { updateUser } from "../actions";
+import {
+  Container,
+  Title,
+  FormContainer,
+  Form,
+  SelectContainer,
+  Select,
+  Label,
+  Option,
+  Input,
+  Button
+} from "../styles";
 
 class UpdateUser extends React.Component {
   constructor() {
@@ -42,48 +54,59 @@ class UpdateUser extends React.Component {
     }
 
     return (
-      <div>
-        <h2>Update {this.state.user.username} Goal or Weight</h2>
-        <form onSubmit={this.handleSubmit}>
-          <div>
-            <label htmlFor="goal">Select your Goal:</label>
-            <select
-              onChange={this.handleChange}
-              value={this.state.user.goal}
-              name="goal"
-              id="goal"
-            >
-              <option value="">Select Goal</option>
-              <option value="aggressive-loss">
-                Agressive Weight Loss (20%)
-              </option>
-              <option value="moderate-loss">Moderate Weight Loss (15%)</option>
-              <option value="small-loss">Weight Loss (10%)</option>
-              <option value="maintain">Maintain Weight</option>
-              <option value="moderate-gain">Moderate Weight Gain (10%)</option>
-              <option value="aggressive-gain">
-                Agressive Weight Gain (15%)
-              </option>
-            </select>
-          </div>
-          <div>
-            <input
+      <Container>
+        <FormContainer>
+          <Title>Update Your Goal or Current Weight</Title>
+          <Form onSubmit={this.handleSubmit}>
+            <SelectContainer>
+              <Label htmlFor="goal">Select your Goal:</Label>
+              <Select
+                onChange={this.handleChange}
+                value={this.state.user.goal}
+                name="goal"
+                id="goal"
+              >
+                <Option value="">Select Goal</Option>
+                <Option value="aggressive-loss">
+                  Agressive Weight Loss (20%)
+                </Option>
+                <Option value="moderate-loss">
+                  Moderate Weight Loss (15%)
+                </Option>
+                <Option value="small-loss">Weight Loss (10%)</Option>
+                <Option value="maintain">Maintain Weight</Option>
+                <Option value="moderate-gain">
+                  Moderate Weight Gain (10%)
+                </Option>
+                <Option value="aggressive-gain">
+                  Agressive Weight Gain (15%)
+                </Option>
+              </Select>
+            </SelectContainer>
+
+            <Input
               name="weight"
               type="number"
               onChange={this.handleChange}
               placeholder="Update weight"
               value={this.state.user.weight}
             />
-          </div>
-          <button>
-            {this.props.editingUser ? (
-              <Loader type="ThreeDots" color="#1f2a38" height="12" width="26" />
-            ) : (
-              "Update Goals"
-            )}
-          </button>
-        </form>
-      </div>
+
+            <Button>
+              {this.props.editingUser ? (
+                <Loader
+                  type="ThreeDots"
+                  color="#1f2a38"
+                  height="12"
+                  width="26"
+                />
+              ) : (
+                "Update Goals"
+              )}
+            </Button>
+          </Form>
+        </FormContainer>
+      </Container>
     );
   }
 }

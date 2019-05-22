@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { signup } from "../actions";
 import {
   Container,
+  Title,
   FormContainer,
   Form,
   Input,
@@ -56,7 +57,7 @@ class Register extends React.Component {
     return (
       <Container>
         <FormContainer>
-          <h1>Sign Up Below</h1>
+          <Title>Sign Up Below</Title>
           <Form onSubmit={this.handleSubmit}>
             <Input
               onChange={this.handleChange}
