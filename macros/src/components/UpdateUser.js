@@ -33,7 +33,6 @@ class UpdateUser extends React.Component {
   };
 
   render() {
-    console.log(this.props);
     if (this.state.user === "") {
       return (
         <div>

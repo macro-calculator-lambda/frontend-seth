@@ -7,17 +7,18 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import MealPage from "./components/MealPage";
 import UpdateUser from "./components/UpdateUser";
+import PrivateRoute from "./components/PrivateRoute";
 import "./App.css";
 
 function App() {
   return (
     <Router>
       <Navigation />
-      <Route exact path="/" component={Home} />
+      <PrivateRoute exact path="/" component={Home} />
       <Route path="/login" component={Login} />
       <Route path="/sign-up" component={Register} />
-      <Route path="/meal-page" component={MealPage} />
-      <Route path="/update-user" component={UpdateUser} />
+      <PrivateRoute exact path="/meal-page" component={MealPage} />
+      <PrivateRoute exact path="/update-user" component={UpdateUser} />
     </Router>
   );
 }

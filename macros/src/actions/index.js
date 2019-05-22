@@ -45,7 +45,6 @@ export const getUserInfo = id => dispatch => {
 
   axiosWithAuth()
     .get(`https://bwmc-backend.herokuapp.com/api/users/${id}`)
-    // .then(res => console.log(res))
     .then(res => dispatch({ type: FETCH_USER_SUCCESS, payload: res.data }))
     .catch(err => dispatch({ type: FETCH_USER_FAIL, payload: err }));
 };
