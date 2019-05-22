@@ -42,7 +42,7 @@ const Navigation = () => {
           <NavElement to="/sign-up">Sign Up</NavElement>
         </NavItem>
         <NavItem>
-          <NavElement to="/meal-page">Meal Page</NavElement>
+          <NavElement to="/meal-page">Meal Breakdown</NavElement>
         </NavItem>
         <NavItem>
           <NavElement to="/update-user">Update Weight/Macro</NavElement>

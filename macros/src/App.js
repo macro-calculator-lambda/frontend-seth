@@ -21,9 +21,12 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: inherit;
   }
 
-
   p {
     font-size: 1.6rem;
+  }
+
+  li {
+    font-size: 1.5rem;
   }
 `;
 

@@ -1,5 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
+import styled from "styled-components";
+
 import {
   meals,
   calculateCalories,
@@ -9,6 +11,29 @@ import {
 } from "../utils";
 
 import { Container, Title, Select, Option } from "../styles";
+
+const SubTitle = styled.h3`
+  font-size: 2rem;
+  text-align: center;
+`;
+
+const CardRow = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+`;
+
+const Card = styled.div`
+  box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.15);
+  background: #fff;
+  padding: 2rem 2.5rem;
+  margin: 1.5rem 0 0;
+`;
+
+const CardTitle = styled.h4`
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+`;
 
 class MealPage extends React.Component {
   constructor() {
@@ -38,20 +63,22 @@ class MealPage extends React.Component {
           <Option value="snack">3 Meals and 2 Snacks Per day</Option>
         </Select>
         <div>
-          <h3>Meal Breakdown</h3>
-          <div>
+          <SubTitle>Meal Breakdown</SubTitle>
+          <CardRow>
             {macros.map((macro, index) => {
               return (
-                <div key={index}>
-                  <h4>{macro.name}</h4>
-                  {calculatePerMeal(
-                    macroCalculator(totalCalories, macro.value),
-                    meals[this.state.mealPlan]
-                  )}
-                </div>
+                <Card key={index}>
+                  <CardTitle>{macro.name}</CardTitle>
+                  <p>
+                    {calculatePerMeal(
+                      macroCalculator(totalCalories, macro.value),
+                      meals[this.state.mealPlan]
+                    )}
+                  </p>
+                </Card>
               );
             })}
-          </div>
+          </CardRow>
         </div>
       </Container>
     );
