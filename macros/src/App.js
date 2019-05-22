@@ -1,6 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
+import styled, { createGlobalStyle } from "styled-components";
+
 import Navigation from "./components/Navigation";
 import Home from "./components/Home";
 import Login from "./components/Login";
@@ -10,9 +12,23 @@ import UpdateUser from "./components/UpdateUser";
 import PrivateRoute from "./components/PrivateRoute";
 import "./App.css";
 
+const GlobalStyle = createGlobalStyle`
+  html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+
+  body {
+    font-size: 62.5%;
+  }
+`;
+
 function App() {
   return (
     <Router>
+      <GlobalStyle />
       <Navigation />
       <PrivateRoute exact path="/" component={Home} />
       <Route path="/login" component={Login} />

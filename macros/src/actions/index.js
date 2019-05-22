@@ -16,7 +16,7 @@ export const login = credentials => dispatch => {
       dispatch({ type: LOGIN_SUCCESS, payload: res.data.id });
     })
     .catch(err => {
-      console.log(err);
+      dispatch({ type: LOGIN_FAIL, payload: "Login failed" });
     });
 };
 
@@ -27,13 +27,10 @@ export const SIGNUP_FAIL = "SIGNUP_FAIL";
 export const signup = userData => dispatch => {
   dispatch({ type: SIGNUP_INITIALIZE });
 
-  return (
-    axios
-      .post(`https://bwmc-backend.herokuapp.com/api/register`, userData)
-      .then(res => console.log(res))
-      // .then(res => ({ type: SIGNUP_SUCCESS, payload: res.data.id }))
-      .catch(err => console.log(err))
-  );
+  return axios
+    .post(`https://bwmc-backend.herokuapp.com/api/register`, userData)
+    .then(res => ({ type: SIGNUP_SUCCESS }))
+    .catch(err => console.log(err));
 };
 
 export const FETCH_USER_INITIALIZE = "FETCH_USER_INITIALIZE";
@@ -49,14 +46,14 @@ export const getUserInfo = id => dispatch => {
     .catch(err => dispatch({ type: FETCH_USER_FAIL, payload: err }));
 };
 
-export const UPATE_USER_INITIALIZE = "UPATE_USER_INITIALIZE";
-export const UPATE_USER_SUCCESS = "UPATE_USER_SUCCESS";
+export const UPDATE_USER_INITIALIZE = "UPDATE_USER_INITIALIZE";
+export const UPDATE_USER_SUCCESS = "UPDATE_USER_SUCCESS";
 export const UPDATE_USER_FAIL = "UPDATE_USER_FAIL";
 
 export const updateUser = user => dispatch => {
-  dispatch({ type: UPATE_USER_INITIALIZE });
+  dispatch({ type: UPDATE_USER_INITIALIZE });
   axiosWithAuth()
     .put(`https://bwmc-backend.herokuapp.com/api/users/${user.id}`, user)
-    .then(res => dispatch({ type: UPATE_USER_SUCCESS }))
+    .then(res => dispatch({ type: UPDATE_USER_SUCCESS }))
     .catch(err => console.log(err));
 };

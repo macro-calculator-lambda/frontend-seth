@@ -8,9 +8,9 @@ import {
   FETCH_USER_INITIALIZE,
   FETCH_USER_SUCCESS,
   FETCH_USER_FAIL,
-  UPATE_USER_INITIALIZE,
-  UPATE_USER_SUCCESS,
-  UPATE_USER_FAIL
+  UPDATE_USER_INITIALIZE,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_FAIL
 } from "../actions";
 
 const initialState = {
@@ -67,7 +67,8 @@ const reducer = (state = initialState, action) => {
     case LOGIN_FAIL:
       return {
         ...state,
-        isLoggingIn: false
+        isLoggingIn: false,
+        error: action.payload
       };
     case FETCH_USER_INITIALIZE:
       return {
@@ -88,13 +89,18 @@ const reducer = (state = initialState, action) => {
         fetchingUser: false,
         error: action.payload
       };
-    case UPATE_USER_INITIALIZE:
+    case UPDATE_USER_INITIALIZE:
       return {
         ...state,
         editingUser: true,
         error: ""
       };
-    case UPATE_USER_SUCCESS:
+    case UPDATE_USER_SUCCESS:
+      return {
+        ...state,
+        editingUser: false
+      };
+    case UPDATE_USER_FAIL:
       return {
         ...state,
         editingUser: false

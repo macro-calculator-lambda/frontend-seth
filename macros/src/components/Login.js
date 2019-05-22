@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-
+import * as Styles from "../styles";
 import { login } from "../actions";
 
 class Login extends React.Component {
@@ -35,6 +35,7 @@ class Login extends React.Component {
     return (
       <div>
         <h1>Login Below</h1>
+        {this.props.error && <p>{this.props.error}</p>}
         <form onSubmit={this.handleSubmit}>
           <input
             value={this.state.credentials.username}
@@ -59,7 +60,8 @@ class Login extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    isLoggingIn: state.isLoggingIn
+    isLoggingIn: state.isLoggingIn,
+    error: state.error
   };
 };
 

@@ -3,11 +3,14 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 
 import { signup } from "../actions";
-
-const Container = styled.div`
-  margin: 0 auto;
-  max-width: 1200px;
-`;
+import {
+  Container,
+  FormContainer,
+  Form,
+  Input,
+  Select,
+  Option
+} from "../styles";
 
 class Register extends React.Component {
   constructor() {
@@ -50,124 +53,122 @@ class Register extends React.Component {
   render() {
     return (
       <Container>
-        <h1>Sign Up Below</h1>
-        <div>
-          <form onSubmit={this.handleSubmit}>
-            <div>
-              <input
-                onChange={this.handleChange}
-                value={this.state.userInfo.username}
-                type="text"
-                name="username"
-                placeholder="Username"
-              />
-            </div>
-            <div>
-              <input
-                onChange={this.handleChange}
-                value={this.state.userInfo.password}
-                type="password"
-                name="password"
-                placeholder="Password"
-              />
-            </div>
+        <FormContainer>
+          <h1>Sign Up Below</h1>
+          <Form onSubmit={this.handleSubmit}>
+            <Input
+              onChange={this.handleChange}
+              value={this.state.userInfo.username}
+              type="text"
+              name="username"
+              placeholder="Username"
+            />
+
+            <Input
+              onChange={this.handleChange}
+              value={this.state.userInfo.password}
+              type="password"
+              name="password"
+              placeholder="Password"
+            />
+
             <div>
               <label htmlFor="gender">Gender: </label>
-              <select
+              <Select
                 onChange={this.handleChange}
                 value={this.state.userInfo.gender}
                 name="gender"
                 id="gender"
               >
-                <option value="">Select Gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-              </select>
+                <Option value="">Select Gender</Option>
+                <Option value="male">Male</Option>
+                <Option value="female">Female</Option>
+              </Select>
             </div>
-            <div>
-              <input
-                onChange={this.handleChange}
-                value={this.state.userInfo.age}
-                type="number"
-                name="age"
-                placeholder="Age"
-              />
-            </div>
+
+            <Input
+              onChange={this.handleChange}
+              value={this.state.userInfo.age}
+              type="number"
+              name="age"
+              placeholder="Age"
+            />
+
             <div>
               <label htmlFor="user-height">Select your Height:</label>
-              <select
+              <Select
                 onChange={this.handleChange}
                 name="height"
                 id="user-height"
                 value={this.state.userInfo.height}
               >
-                <option value="">Select Height</option>
-                <option value="63">5' 3"</option>
-                <option value="64">5' 4"</option>
-                <option value="65">5' 5"</option>
-                <option value="66">5' 6"</option>
-                <option value="67">5' 7"</option>
-                <option value="68">5' 8"</option>
-                <option value="69">5' 9"</option>
-                <option value="70">5' 10"</option>
-                <option value="71">5' 11"</option>
-                <option value="72">6'</option>
-              </select>
+                <Option value="">Select Height</Option>
+                <Option value="63">5' 3"</Option>
+                <Option value="64">5' 4"</Option>
+                <Option value="65">5' 5"</Option>
+                <Option value="66">5' 6"</Option>
+                <Option value="67">5' 7"</Option>
+                <Option value="68">5' 8"</Option>
+                <Option value="69">5' 9"</Option>
+                <Option value="70">5' 10"</Option>
+                <Option value="71">5' 11"</Option>
+                <Option value="72">6'</Option>
+              </Select>
             </div>
-            <div>
-              <input
-                onChange={this.handleChange}
-                value={this.state.userInfo.weight}
-                type="number"
-                name="weight"
-                placeholder="Weight in pounds"
-              />
-            </div>
+
+            <Input
+              onChange={this.handleChange}
+              value={this.state.userInfo.weight}
+              type="number"
+              name="weight"
+              placeholder="Weight in pounds"
+            />
+
             <div>
               <label htmlFor="exercise-total">Exercise per week:</label>
-              <select
+              <Select
                 onChange={this.handleChange}
                 value={this.state.userInfo.exercise}
                 name="exercise"
                 id="exercise-total"
               >
-                <option value="">Select Exercise Days</option>
-                <option value="0">0 days</option>
-                <option value="1">1-2 days</option>
-                <option value="3">3-4 days</option>
-                <option value="5">5-6 days</option>
-                <option value="7">7 days</option>
-              </select>
+                <Option value="">Select Exercise Days</Option>
+                <Option value="0">0 days</Option>
+                <Option value="1">1-2 days</Option>
+                <Option value="3">3-4 days</Option>
+                <Option value="5">5-6 days</Option>
+                <Option value="7">7 days</Option>
+              </Select>
             </div>
             <div>
               <label htmlFor="goal">Select your Goal:</label>
-              <select
+              <Select
                 onChange={this.handleChange}
                 value={this.state.userInfo.goal}
                 name="goal"
                 id="goal"
               >
-                <option value="">Select Goal</option>
-                <option value="aggressive-loss">
+                <Option value="">Select Goal</Option>
+                <Option value="aggressive-loss">
                   Agressive Weight Loss (20%)
-                </option>
-                <option value="moderate-loss">
+                </Option>
+                <Option value="moderate-loss">
                   Moderate Weight Loss (15%)
-                </option>
-                <option value="small-loss">Weight Loss (10%)</option>
-                <option value="maintain">Maintain Weight</option>
-                <option value="moderate-gain">
+                </Option>
+                <Option value="small-loss">Weight Loss (10%)</Option>
+                <Option value="maintain">Maintain Weight</Option>
+                <Option value="moderate-gain">
                   Moderate Weight Gain (10%)
-                </option>
-                <option value="aggressive-gain">
+                </Option>
+                <Option value="aggressive-gain">
                   Agressive Weight Gain (15%)
-                </option>
-              </select>
+                </Option>
+              </Select>
             </div>
 
             <button>Sign Up</button>
-          </form>
-        </div>
+          </Form>
+        </FormContainer>
       </Container>
     );
   }
