@@ -14,6 +14,7 @@ const initialState = {
   isLoggingIn: false,
   isSigningUp: false,
   fetchingUser: false,
+  editingUser: false,
   error: "",
   id: "",
   user: {

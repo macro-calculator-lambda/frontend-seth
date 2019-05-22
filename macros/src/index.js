@@ -6,10 +6,21 @@ import thunk from "redux-thunk";
 import reducer from "./reducers";
 import { Provider } from "react-redux";
 
+import { loadState, saveState } from "./localStorage";
+
 import "./index.css";
 import App from "./App";
 
-const store = createStore(reducer, applyMiddleware(thunk));
+const persistedState = loadState();
+const store = createStore(reducer, persistedState, applyMiddleware(thunk));
+
+// Notify changes to store's state with the subscribe method which will be invoked whenever there is a state change
+store.subscribe(() => {
+  // pass the object with the todos field only from the state object
+  saveState({
+    user: store.getState().user
+  });
+});
 
 ReactDOM.render(
   <Provider store={store}>

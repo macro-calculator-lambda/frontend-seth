@@ -35,7 +35,7 @@ class Register extends React.Component {
     this.setState({
       userInfo: {
         ...this.state.userInfo,
-        [event.target.name]: event.target.value
+        [event.target.name]: value
       }
     });
   };

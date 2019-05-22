@@ -49,3 +49,7 @@ export const getUserInfo = id => dispatch => {
     .then(res => dispatch({ type: FETCH_USER_SUCCESS, payload: res.data }))
     .catch(err => dispatch({ type: FETCH_USER_FAIL, payload: err }));
 };
+
+export const UPATE_USER_INITIALIZE = "UPATE_USER_INITIALIZE";
+export const UPATE_USER_SUCCESS = "UPATE_USER_SUCCESS";
+export const UPDATE_USER_FAIL = "UPDATE_USER_FAIL";

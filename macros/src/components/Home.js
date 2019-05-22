@@ -52,7 +52,8 @@ class Home extends React.Component {
           {macros.map((macro, index) => {
             return (
               <li key={index}>
-                {macro.name}: {macroCalculator(totalCalories, macro.value)}
+                {macro.name}: {macroCalculator(totalCalories, macro.value)}{" "}
+                grams per day
               </li>
             );
           })}
