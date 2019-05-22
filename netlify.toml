@@ -1,0 +1,10 @@
+[build]
+    base = 'macros/'
+    command = 'yarn build'
+    publish = 'macros/build'
+
+
+[[redirects]]
+    from = '/*'   
+    to = '/index.html'   
+    status= 200
