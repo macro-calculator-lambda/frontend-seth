@@ -22,8 +22,8 @@ export const Input = styled.input`
   padding: 0.2rem 0.3rem;
   border-bottom: 0.2rem solid black;
   display: block;
-  margin: 0 auto 1rem;
-  font-size: 1.5rem;
+  margin: 0 auto 1.3rem;
+  font-size: 1rem;
   transition: 0.3s all ease-in-out;
   &:focus {
     outline: none;
@@ -31,16 +31,25 @@ export const Input = styled.input`
   }
 `;
 
+export const SelectContainer = styled.div`
+  margin: 0 0 1.3rem;
+`;
+
+export const Label = styled.label`
+  font-size: 1.2rem;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+`;
+
 export const Select = styled.select`
   display: block;
-  font-size: 16px;
-  font-family: sans-serif;
+  font-size: 1rem;
   font-weight: 700;
   color: #444;
   line-height: 1.3;
   padding: 0.6em 1.4em 0.5em 0.8em;
   width: 100%;
-  max-width: 100%; /* useful when width is set to anything other than 100% */
+  max-width: 100%;
   box-sizing: border-box;
   margin: 0;
   border: 1px solid #aaa;
@@ -55,7 +64,7 @@ export const Select = styled.select`
     linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
   background-repeat: no-repeat, repeat;
   /* arrow icon position (1em from the right, 50% vertical) , then gradient position*/
-  background-position: right 0.7em top 50%, 0 0;
+  background-position: right 0.5rem top 50%, 0 0;
   /* icon size, then gradient */
   background-size: 0.65em auto, 100%;
 
@@ -66,7 +75,6 @@ export const Select = styled.select`
   /* Focus style */
   &:focus {
     border-color: #aaa;
-    /* It'd be nice to use -webkit-focus-ring-color here but it doesn't work on box-shadow */
     box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
     box-shadow: 0 0 0 3px -moz-mac-focusring;
     color: #222;
@@ -86,4 +94,14 @@ export const Select = styled.select`
 
 export const Option = styled.option`
   font-weight: normal;
+`;
+
+export const Button = styled.button`
+  padding: 0.5rem 1rem
+  font-size: 1.2rem;
+  border-radius: 4px;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;

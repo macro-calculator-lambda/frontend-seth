@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { connect } from "react-redux";
 
 import { signup } from "../actions";
@@ -9,7 +8,10 @@ import {
   Form,
   Input,
   Select,
-  Option
+  Option,
+  SelectContainer,
+  Label,
+  Button
 } from "../styles";
 
 class Register extends React.Component {
@@ -72,19 +74,19 @@ class Register extends React.Component {
               placeholder="Password"
             />
 
-            <div>
-              <label htmlFor="gender">Gender: </label>
+            <SelectContainer>
+              <Label htmlFor="gender">Gender: </Label>
               <Select
                 onChange={this.handleChange}
                 value={this.state.userInfo.gender}
                 name="gender"
                 id="gender"
               >
-                <Option value="">Select Gender</Option>
+                <Option value="">Gender</Option>
                 <Option value="male">Male</Option>
                 <Option value="female">Female</Option>
               </Select>
-            </div>
+            </SelectContainer>
 
             <Input
               onChange={this.handleChange}
@@ -94,15 +96,15 @@ class Register extends React.Component {
               placeholder="Age"
             />
 
-            <div>
-              <label htmlFor="user-height">Select your Height:</label>
+            <SelectContainer>
+              <Label htmlFor="user-height">Select your Height:</Label>
               <Select
                 onChange={this.handleChange}
                 name="height"
                 id="user-height"
                 value={this.state.userInfo.height}
               >
-                <Option value="">Select Height</Option>
+                <Option value="">Height</Option>
                 <Option value="63">5' 3"</Option>
                 <Option value="64">5' 4"</Option>
                 <Option value="65">5' 5"</Option>
@@ -114,7 +116,7 @@ class Register extends React.Component {
                 <Option value="71">5' 11"</Option>
                 <Option value="72">6'</Option>
               </Select>
-            </div>
+            </SelectContainer>
 
             <Input
               onChange={this.handleChange}
@@ -124,31 +126,31 @@ class Register extends React.Component {
               placeholder="Weight in pounds"
             />
 
-            <div>
-              <label htmlFor="exercise-total">Exercise per week:</label>
+            <SelectContainer>
+              <Label htmlFor="exercise-total">Exercise per week:</Label>
               <Select
                 onChange={this.handleChange}
                 value={this.state.userInfo.exercise}
                 name="exercise"
                 id="exercise-total"
               >
-                <Option value="">Select Exercise Days</Option>
+                <Option value="">Exercise Days</Option>
                 <Option value="0">0 days</Option>
                 <Option value="1">1-2 days</Option>
                 <Option value="3">3-4 days</Option>
                 <Option value="5">5-6 days</Option>
                 <Option value="7">7 days</Option>
               </Select>
-            </div>
-            <div>
-              <label htmlFor="goal">Select your Goal:</label>
+            </SelectContainer>
+            <SelectContainer>
+              <Label htmlFor="goal">Select your Goal:</Label>
               <Select
                 onChange={this.handleChange}
                 value={this.state.userInfo.goal}
                 name="goal"
                 id="goal"
               >
-                <Option value="">Select Goal</Option>
+                <Option value="">Goal</Option>
                 <Option value="aggressive-loss">
                   Agressive Weight Loss (20%)
                 </Option>
@@ -164,9 +166,9 @@ class Register extends React.Component {
                   Agressive Weight Gain (15%)
                 </Option>
               </Select>
-            </div>
+            </SelectContainer>
 
-            <button>Sign Up</button>
+            <Button>Sign Up</Button>
           </Form>
         </FormContainer>
       </Container>
