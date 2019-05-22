@@ -28,9 +28,7 @@ class UpdateUser extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.updateUser(this.state.user).then(() => {
-      this.props.history.push("/");
-    });
+    this.props.updateUser(this.state.user);
   };
 
   render() {
@@ -44,7 +42,7 @@ class UpdateUser extends React.Component {
 
     return (
       <div>
-        <h2>Update {this.props.user.username} Goal or Weight</h2>
+        <h2>Update {this.state.user.username} Goal or Weight</h2>
         <form onSubmit={this.handleSubmit}>
           <div>
             <label htmlFor="goal">Select your Goal:</label>
