@@ -55,5 +55,5 @@ export const updateUser = user => dispatch => {
   axiosWithAuth()
     .put(`https://bwmc-backend.herokuapp.com/api/users/${user.id}`, user)
     .then(res => dispatch({ type: UPDATE_USER_SUCCESS }))
-    .catch(err => console.log(err));
+    .catch(err => dispatch({ type: UPDATE_USER_FAIL, payload: err }));
 };

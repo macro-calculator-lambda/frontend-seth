@@ -15,7 +15,8 @@ class Home extends React.Component {
   }
 
   render() {
-    if (!this.props.user) {
+    console.log(this.props.fetchingUser);
+    if (this.props.fetchingUser) {
       return (
         <Container>
           <Loader type="ThreeDots" color="#1f2a38" height="50" width="50" />
@@ -65,6 +66,7 @@ class Home extends React.Component {
 const mapStateToProps = state => {
   return {
     id: state.id,
+    fetchingUser: state.fetchingUser,
     user: {
       username: state.user.username,
       id: state.user.id,

@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
 
@@ -47,10 +48,14 @@ class UpdateUser extends React.Component {
   render() {
     if (this.state.user === "") {
       return (
-        <div>
-          <h2>Loading</h2>
-        </div>
+        <Container>
+          <Loader type="ThreeDots" color="#1f2a38" height="12" width="26" />
+        </Container>
       );
+    }
+
+    if (this.props.editingUser === true && this.props.error === "") {
+      return <Redirect to="/" />;
     }
 
     return (
@@ -114,6 +119,8 @@ class UpdateUser extends React.Component {
 const mapStateToProps = state => {
   return {
     editingUser: state.editingUser,
+    response: state.response,
+    error: state.error,
     user: {
       username: state.user.username,
       id: state.user.id,

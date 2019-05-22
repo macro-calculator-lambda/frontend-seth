@@ -20,6 +20,7 @@ const initialState = {
   editingUser: false,
   error: "",
   id: "",
+  response: "",
   user: {
     username: "",
     id: "",
@@ -103,7 +104,8 @@ const reducer = (state = initialState, action) => {
     case UPDATE_USER_FAIL:
       return {
         ...state,
-        editingUser: false
+        editingUser: false,
+        error: action.payload
       };
     default:
       return state;
