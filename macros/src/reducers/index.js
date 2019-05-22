@@ -97,8 +97,7 @@ const reducer = (state = initialState, action) => {
     case UPATE_USER_SUCCESS:
       return {
         ...state,
-        editingUser: false,
-        user: action.payload
+        editingUser: false
       };
     default:
       return state;

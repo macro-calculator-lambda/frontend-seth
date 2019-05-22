@@ -16,7 +16,6 @@ const store = createStore(reducer, persistedState, applyMiddleware(thunk));
 
 // Notify changes to store's state with the subscribe method which will be invoked whenever there is a state change
 store.subscribe(() => {
-  // pass the object with the todos field only from the state object
   saveState({
     user: store.getState().user
   });

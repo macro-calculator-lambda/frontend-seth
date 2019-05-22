@@ -56,9 +56,8 @@ export const UPDATE_USER_FAIL = "UPDATE_USER_FAIL";
 
 export const updateUser = user => dispatch => {
   dispatch({ type: UPATE_USER_INITIALIZE });
-  console.log(user);
   axiosWithAuth()
     .put(`https://bwmc-backend.herokuapp.com/api/users/${user.id}`, user)
-    .then(res => dispatch({ type: UPATE_USER_SUCCESS, payload: res.data }))
+    .then(res => dispatch({ type: UPATE_USER_SUCCESS }))
     .catch(err => console.log(err));
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import Loader from "react-loader-spinner";
 
 import { updateUser } from "../actions";
 
@@ -32,6 +33,7 @@ class UpdateUser extends React.Component {
   };
 
   render() {
+    console.log(this.props);
     if (this.state.user === "") {
       return (
         <div>
@@ -74,7 +76,13 @@ class UpdateUser extends React.Component {
               value={this.state.user.weight}
             />
           </div>
-          <button>Update Macros</button>
+          <button>
+            {this.props.editingUser ? (
+              <Loader type="ThreeDots" color="#1f2a38" height="12" width="26" />
+            ) : (
+              "Update Goals"
+            )}
+          </button>
         </form>
       </div>
     );
@@ -83,6 +91,7 @@ class UpdateUser extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    editingUser: state.editingUser,
     user: {
       username: state.user.username,
       id: state.user.id,
