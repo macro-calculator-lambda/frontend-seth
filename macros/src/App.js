@@ -15,17 +15,19 @@ import "./App.css";
 const GlobalStyle = createGlobalStyle`
   html {
     box-sizing: border-box;
+    font-size: 62.5%;
   }
   *, *:before, *:after {
     box-sizing: inherit;
   }
 
-  body {
-    font-size: 62.5%;
+
+  p {
+    font-size: 1.6rem;
   }
 `;
 
-function App() {
+const App = () => {
   return (
     <Router>
       <GlobalStyle />
@@ -37,6 +39,5 @@ function App() {
       <PrivateRoute exact path="/update-user" component={UpdateUser} />
     </Router>
   );
-}
-
+};
 export default App;

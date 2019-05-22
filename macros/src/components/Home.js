@@ -4,6 +4,8 @@ import { PieChart } from "react-chartkick";
 import Chart from "chart.js";
 
 import { getUserInfo } from "../actions";
+import { Container, Title } from "../styles";
+import { login } from "../actions";
 
 import { calculateCalories, macroCalculator, macros } from "../utils";
 
@@ -19,21 +21,21 @@ class Home extends React.Component {
   render() {
     if (this.props.fetchingUser) {
       return (
-        <div>
+        <Container>
           <h2>Fetching Info...</h2>
-        </div>
+        </Container>
       );
     }
     const totalCalories = calculateCalories(this.props.user);
 
     return (
-      <div>
+      <Container>
         <h1>Home</h1>
-        <p>{this.props.user.username}</p>
+        <p />
         <p>
-          Total Calories Per day:{" "}
-          {Math.ceil(calculateCalories(this.props.user))}
+          Recommended Total Calories Per day for {this.props.user.username}:
         </p>
+        <p>{Math.ceil(calculateCalories(this.props.user))}</p>
         <div>
           <h2>Macro Breakdown</h2>
           {
@@ -59,7 +61,7 @@ class Home extends React.Component {
           })}
         </ul>
         <p />
-      </div>
+      </Container>
     );
   }
 }

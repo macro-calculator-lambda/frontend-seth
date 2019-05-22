@@ -1,8 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-
-import { getUserInfo } from "../actions";
-
 import {
   meals,
   calculateCalories,
@@ -11,16 +8,14 @@ import {
   macros
 } from "../utils";
 
+import { Container, Title, Select, Option } from "../styles";
+
 class MealPage extends React.Component {
   constructor() {
     super();
     this.state = {
       mealPlan: ""
     };
-  }
-
-  componentDidMount() {
-    this.props.getUserInfo(localStorage.getItem("id"));
   }
 
   handleChange = event => {
@@ -34,14 +29,14 @@ class MealPage extends React.Component {
     const totalCalories = calculateCalories(this.props.user);
 
     return (
-      <div>
-        <h2>Meal Page</h2>
-        <select name="mealPlan" id="meal-select" onChange={this.handleChange}>
-          <option value="">Choose a Meal Plan</option>
-          <option value="four">4 meals a day</option>
-          <option value="three">3 Meals Per day</option>
-          <option value="snack">3 Meals and 2 Snacks Per day</option>
-        </select>
+      <Container>
+        <Title>Meal Breakdown</Title>
+        <Select name="mealPlan" id="meal-select" onChange={this.handleChange}>
+          <Option value="">Choose a Meal Plan</Option>
+          <Option value="four">4 meals a day</Option>
+          <Option value="three">3 Meals Per day</Option>
+          <Option value="snack">3 Meals and 2 Snacks Per day</Option>
+        </Select>
         <div>
           <h3>Meal Breakdown</h3>
           <div>
@@ -58,7 +53,7 @@ class MealPage extends React.Component {
             })}
           </div>
         </div>
-      </div>
+      </Container>
     );
   }
 }
@@ -81,5 +76,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getUserInfo }
+  {}
 )(MealPage);

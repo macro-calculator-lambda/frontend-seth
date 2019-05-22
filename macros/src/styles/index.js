@@ -6,7 +6,7 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: 1.8rem;
+  font-size: 2.5rem;
 `;
 
 export const FormContainer = styled.div`
@@ -26,8 +26,8 @@ export const Input = styled.input`
   padding: 0.2rem 0.3rem;
   border-bottom: 0.2rem solid black;
   display: block;
-  margin: 0 auto 1.3rem;
-  font-size: 1rem;
+  margin: 0 auto 1.5rem;
+  font-size: 1.4rem;
   transition: 0.3s all ease-in-out;
   &:focus {
     outline: none;
@@ -36,18 +36,18 @@ export const Input = styled.input`
 `;
 
 export const SelectContainer = styled.div`
-  margin: 0 0 1.3rem;
+  margin: 0 0 1.5rem;
 `;
 
 export const Label = styled.label`
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   display: inline-block;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.8rem;
 `;
 
 export const Select = styled.select`
   display: block;
-  font-size: 1rem;
+  font-size: 1.3rem;
   font-weight: 700;
   color: #444;
   line-height: 1.3;
