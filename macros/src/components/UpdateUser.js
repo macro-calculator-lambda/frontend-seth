@@ -1,13 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { getUserInfo } from "../actions";
+import { updateUser } from "../actions";
 
 class UpdateUser extends React.Component {
   constructor() {
     super();
     this.state = {
-      user: {}
+      user: ""
     };
   }
 
@@ -18,18 +18,34 @@ class UpdateUser extends React.Component {
   }
 
   handleChange = event => {
-    this.setState({});
+    this.setState({
+      user: {
+        ...this.state.user,
+        [event.target.name]: event.target.value
+      }
+    });
   };
 
   handleSubmit = event => {
     event.preventDefault();
+    this.props.updateUser(this.state.user).then(() => {
+      this.props.history.push("/");
+    });
   };
 
   render() {
+    if (this.state.user === "") {
+      return (
+        <div>
+          <h2>Loading</h2>
+        </div>
+      );
+    }
+
     return (
       <div>
-        <h2>Update {this.props.user.username} Macros or Weight</h2>
-        <form>
+        <h2>Update {this.props.user.username} Goal or Weight</h2>
+        <form onSubmit={this.handleSubmit}>
           <div>
             <label htmlFor="goal">Select your Goal:</label>
             <select
@@ -84,5 +100,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {}
+  { updateUser }
 )(UpdateUser);

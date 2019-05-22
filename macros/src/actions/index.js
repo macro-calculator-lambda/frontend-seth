@@ -53,3 +53,12 @@ export const getUserInfo = id => dispatch => {
 export const UPATE_USER_INITIALIZE = "UPATE_USER_INITIALIZE";
 export const UPATE_USER_SUCCESS = "UPATE_USER_SUCCESS";
 export const UPDATE_USER_FAIL = "UPDATE_USER_FAIL";
+
+export const updateUser = user => dispatch => {
+  dispatch({ type: UPATE_USER_INITIALIZE });
+  console.log(user);
+  axiosWithAuth()
+    .put(`https://bwmc-backend.herokuapp.com/api/users/${user.id}`, user)
+    .then(res => dispatch({ type: UPATE_USER_SUCCESS, payload: res.data }))
+    .catch(err => console.log(err));
+};
