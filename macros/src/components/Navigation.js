@@ -36,16 +36,16 @@ const Navigation = () => {
           <NavElement to="/">Home</NavElement>
         </NavItem>
         <NavItem>
-          <NavElement to="/login">Login</NavElement>
-        </NavItem>
-        <NavItem>
-          <NavElement to="/sign-up">Sign Up</NavElement>
-        </NavItem>
-        <NavItem>
           <NavElement to="/meal-page">Meal Breakdown</NavElement>
         </NavItem>
         <NavItem>
           <NavElement to="/update-user">Update Weight/Macro</NavElement>
+        </NavItem>
+        <NavItem>
+          <NavElement to="/login">Login</NavElement>
+        </NavItem>
+        <NavItem>
+          <NavElement to="/sign-up">Sign Up</NavElement>
         </NavItem>
       </NavContainer>
     </NavBar>
