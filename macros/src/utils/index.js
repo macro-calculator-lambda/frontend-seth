@@ -29,7 +29,6 @@ export const calculateCalories = user => {
     const femaleBMR = 655 + femaleWeight + femaleHeight - femaleAge;
     return femaleBMR * sampleDays[user.exercise] * goals[user.goal];
   } else {
-    console.log(user);
     const maleWeight = 6.23 * user.weight;
     const maleHeight = 12.7 * user.height;
     const maleAge = 6.8 * user.age;

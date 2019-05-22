@@ -42,7 +42,9 @@ class UpdateUser extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.updateUser(this.state.user);
+    this.props.updateUser(this.state.user).then(() => {
+      this.props.history.push("/");
+    });
   };
 
   render() {
@@ -52,10 +54,6 @@ class UpdateUser extends React.Component {
           <Loader type="ThreeDots" color="#1f2a38" height="12" width="26" />
         </Container>
       );
-    }
-
-    if (this.props.editingUser === true && this.props.error === "") {
-      return <Redirect to="/" />;
     }
 
     return (

@@ -4,7 +4,7 @@ import { PieChart } from "react-chartkick";
 import Chart from "chart.js";
 import Loader from "react-loader-spinner";
 
-import { getUserInfo } from "../actions";
+import { getUserInfo, deleteUser } from "../actions";
 import { Container, Title } from "../styles";
 
 import { calculateCalories, macroCalculator, macros } from "../utils";
@@ -14,8 +14,15 @@ class Home extends React.Component {
     this.props.getUserInfo(localStorage.getItem("id"));
   }
 
+  handleClick = event => {
+    event.preventDefault();
+    this.props.deleteUser(this.props.user.id).then(() => {
+      localStorage.clear();
+      this.props.history.push("/sign-up");
+    });
+  };
+
   render() {
-    console.log(this.props.fetchingUser);
     if (this.props.fetchingUser) {
       return (
         <Container>
@@ -28,7 +35,6 @@ class Home extends React.Component {
     return (
       <Container>
         <Title>Home</Title>
-        <p />
         <p>
           Recommended Total Calories Per day for {this.props.user.username}:
         </p>
@@ -58,6 +64,7 @@ class Home extends React.Component {
           })}
         </ul>
         <p />
+        <button onClick={this.handleClick}>Delete Account</button>
       </Container>
     );
   }
@@ -67,6 +74,7 @@ const mapStateToProps = state => {
   return {
     id: state.id,
     fetchingUser: state.fetchingUser,
+    deletingUser: state.deletingUser,
     user: {
       username: state.user.username,
       id: state.user.id,
@@ -82,5 +90,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getUserInfo }
+  { getUserInfo, deleteUser }
 )(Home);

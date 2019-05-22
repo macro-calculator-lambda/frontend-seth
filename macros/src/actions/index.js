@@ -52,8 +52,21 @@ export const UPDATE_USER_FAIL = "UPDATE_USER_FAIL";
 
 export const updateUser = user => dispatch => {
   dispatch({ type: UPDATE_USER_INITIALIZE });
-  axiosWithAuth()
+  return axiosWithAuth()
     .put(`https://bwmc-backend.herokuapp.com/api/users/${user.id}`, user)
     .then(res => dispatch({ type: UPDATE_USER_SUCCESS }))
     .catch(err => dispatch({ type: UPDATE_USER_FAIL, payload: err }));
+};
+
+export const DELETE_USER_INITIALIZE = "DELETE_USER_INITIALIZE";
+export const DELETE_USER_SUCCESS = "DELETE_USER_SUCCESS";
+export const DELETE_USER_FAIL = "DELETE_USER_FAIL";
+
+export const deleteUser = id => dispatch => {
+  dispatch({ type: UPDATE_USER_INITIALIZE });
+
+  return axiosWithAuth()
+    .delete(`https://bwmc-backend.herokuapp.com/api/users/${id}`)
+    .then(res => dispatch({ type: DELETE_USER_SUCCESS }))
+    .catch(err => dispatch({ type: DELETE_USER_FAIL }));
 };
