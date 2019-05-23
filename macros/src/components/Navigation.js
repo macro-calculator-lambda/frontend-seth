@@ -1,6 +1,5 @@
 import React from "react";
 import { NavLink, withRouter } from "react-router-dom";
-import { log } from "util";
 import { connect } from "react-redux";
 import { logOut } from "../actions";
 
@@ -34,7 +33,7 @@ const NavElement = styled(NavLink)`
 const handleClick = (event, props) => {
   event.preventDefault();
   localStorage.clear();
-  props.history.push("/sign-up");
+  props.history.push("/login");
 };
 
 const Navigation = props => {
@@ -48,7 +47,7 @@ const Navigation = props => {
           <NavElement to="/meal-page">Meal Breakdown</NavElement>
         </NavItem>
         <NavItem>
-          <NavElement to="/update-user">Update Weight/Macro</NavElement>
+          <NavElement to="/update-user">Update Goal</NavElement>
         </NavItem>
         <NavItem>
           <NavElement to="/login">Login</NavElement>

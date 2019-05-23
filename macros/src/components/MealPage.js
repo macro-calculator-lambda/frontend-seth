@@ -10,7 +10,12 @@ import {
   macros
 } from "../utils";
 
-import { Container, Title, Select, Option } from "../styles";
+import { Container, Title, SelectContainer, Select, Option } from "../styles";
+
+const SmallContainer = styled(SelectContainer)`
+  margin: 0 auto 1.5rem;
+  max-width: 400px;
+`;
 
 const SubTitle = styled.h3`
   font-size: 2rem;
@@ -55,15 +60,17 @@ class MealPage extends React.Component {
 
     return (
       <Container>
-        <Title>Meal Breakdown</Title>
-        <Select name="mealPlan" id="meal-select" onChange={this.handleChange}>
-          <Option value="">Choose a Meal Plan</Option>
-          <Option value="four">4 meals a day</Option>
-          <Option value="three">3 Meals Per day</Option>
-          <Option value="snack">3 Meals and 2 Snacks Per day</Option>
-        </Select>
+        <Title style={{ textAlign: "center" }}>Meal Breakdown</Title>
+        <SmallContainer>
+          <Select name="mealPlan" id="meal-select" onChange={this.handleChange}>
+            <Option value="">Choose a Meal Plan</Option>
+            <Option value="four">4 meals a day</Option>
+            <Option value="three">3 Meals Per day</Option>
+            <Option value="snack">3 Meals and 2 Snacks Per day</Option>
+          </Select>
+        </SmallContainer>
         <div>
-          <SubTitle>Meal Breakdown</SubTitle>
+          <SubTitle>Relevant Macros</SubTitle>
           <CardRow>
             {macros.map((macro, index) => {
               return (
@@ -87,7 +94,6 @@ class MealPage extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    id: state.id,
     user: {
       username: state.user.username,
       id: state.user.id,

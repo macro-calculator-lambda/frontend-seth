@@ -125,6 +125,12 @@ const reducer = (state = initialState, action) => {
         ...state,
         deletingUser: false
       };
+    case DELETE_USER_FAIL:
+      return {
+        ...state,
+        deletingUser: false,
+        error: action.payload
+      };
     case LOGOUT_USER:
       return {
         ...state,
