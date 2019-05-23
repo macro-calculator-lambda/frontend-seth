@@ -24,7 +24,7 @@ export const FlexContainer = styled.div`
 `;
 
 export const FlexItem = styled.div`
-  margin: 0 20px;
+  margin: 2rem;
 `;
 
 export const Title = styled.h1`
