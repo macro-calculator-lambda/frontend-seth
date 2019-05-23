@@ -82,7 +82,7 @@ class UpdateUser extends React.Component {
                 >
                   <Option value="">Select Goal</Option>
                   <Option value="aggressive-loss">
-                    Agressive Weight Loss (20%)
+                    Aggressive Weight Loss (20%)
                   </Option>
                   <Option value="moderate-loss">
                     Moderate Weight Loss (15%)
@@ -93,7 +93,7 @@ class UpdateUser extends React.Component {
                     Moderate Weight Gain (10%)
                   </Option>
                   <Option value="aggressive-gain">
-                    Agressive Weight Gain (15%)
+                    Aggressive Weight Gain (15%)
                   </Option>
                 </Select>
               </SelectContainer>
@@ -110,7 +110,7 @@ class UpdateUser extends React.Component {
                 {this.props.editingUser ? (
                   <Loader
                     type="ThreeDots"
-                    color="#1f2a38"
+                    color="#333"
                     height="12"
                     width="26"
                   />

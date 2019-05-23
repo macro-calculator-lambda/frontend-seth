@@ -23,7 +23,7 @@ import {
 } from "../styles";
 
 const SmallContainer = styled(SelectContainer)`
-  margin: 0 auto 1.5rem;
+  margin: 0 auto 2.5rem;
   max-width: 400px;
 `;
 
@@ -75,12 +75,12 @@ class MealPage extends React.Component {
             >
               <Option value="">Choose a Meal Plan</Option>
               <Option value="four">4 meals a day</Option>
-              <Option value="three">3 Meals Per day</Option>
-              <Option value="snack">3 Meals and 2 Snacks Per day</Option>
+              <Option value="three">3 meals a day</Option>
+              <Option value="snack">3 meals and 2 snacks a day</Option>
             </Select>
           </SmallContainer>
           <div>
-            <SubTitle>Relevant Macros</SubTitle>
+            <SubTitle>Recommended Macros per Meal</SubTitle>
             <CardRow>
               {macros.map((macro, index) => {
                 return (

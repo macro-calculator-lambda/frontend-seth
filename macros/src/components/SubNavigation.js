@@ -41,6 +41,10 @@ const SubNavElement = styled(NavLink).attrs({
   &.${activeClassName} {
     border-bottom: 2px solid #fff;
   }
+
+  @media (max-width: 450px) {
+    font-size: 1.3rem;
+  }
 `;
 
 const handleClick = (event, props) => {

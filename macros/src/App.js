@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 import Navigation from "./components/Navigation";
 import Home from "./components/Home";
@@ -13,13 +13,17 @@ import PrivateRoute from "./components/PrivateRoute";
 import "./App.css";
 
 const GlobalStyle = createGlobalStyle`
+  html, body {
+    height: 100%;
+  }
+
   html {
     box-sizing: border-box;
     font-size: 62.5%;
   }
 
   body {
-    background: #F6EBF4;
+    background: #FCF9FB;
     font-family: 'Muli', sans-serif;
   }
 
