@@ -1,6 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import styled from "styled-components";
+
+import SubNavigation from "./SubNavigation";
 
 import {
   meals,
@@ -10,7 +13,19 @@ import {
   macros
 } from "../utils";
 
-import { Container, Title, Select, Option } from "../styles";
+import {
+  Container,
+  Title,
+  SelectContainer,
+  Select,
+  Option,
+  Card
+} from "../styles";
+
+const SmallContainer = styled(SelectContainer)`
+  margin: 0 auto 1.5rem;
+  max-width: 400px;
+`;
 
 const SubTitle = styled.h3`
   font-size: 2rem;
@@ -21,13 +36,6 @@ const CardRow = styled.div`
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-`;
-
-const Card = styled.div`
-  box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.15);
-  background: #fff;
-  padding: 2rem 2.5rem;
-  margin: 1.5rem 0 0;
 `;
 
 const CardTitle = styled.h4`
@@ -54,40 +62,49 @@ class MealPage extends React.Component {
     const totalCalories = calculateCalories(this.props.user);
 
     return (
-      <Container>
-        <Title>Meal Breakdown</Title>
-        <Select name="mealPlan" id="meal-select" onChange={this.handleChange}>
-          <Option value="">Choose a Meal Plan</Option>
-          <Option value="four">4 meals a day</Option>
-          <Option value="three">3 Meals Per day</Option>
-          <Option value="snack">3 Meals and 2 Snacks Per day</Option>
-        </Select>
-        <div>
-          <SubTitle>Meal Breakdown</SubTitle>
-          <CardRow>
-            {macros.map((macro, index) => {
-              return (
-                <Card key={index}>
-                  <CardTitle>{macro.name}</CardTitle>
-                  <p>
-                    {calculatePerMeal(
-                      macroCalculator(totalCalories, macro.value),
-                      meals[this.state.mealPlan]
-                    )}
-                  </p>
-                </Card>
-              );
-            })}
-          </CardRow>
-        </div>
-      </Container>
+      <>
+        <SubNavigation />
+        <Container>
+          <Title style={{ textAlign: "center" }}>Meal Breakdown</Title>
+
+          <SmallContainer>
+            <Select
+              name="mealPlan"
+              id="meal-select"
+              onChange={this.handleChange}
+            >
+              <Option value="">Choose a Meal Plan</Option>
+              <Option value="four">4 meals a day</Option>
+              <Option value="three">3 Meals Per day</Option>
+              <Option value="snack">3 Meals and 2 Snacks Per day</Option>
+            </Select>
+          </SmallContainer>
+          <div>
+            <SubTitle>Relevant Macros</SubTitle>
+            <CardRow>
+              {macros.map((macro, index) => {
+                return (
+                  <Card key={index}>
+                    <CardTitle>{macro.name}</CardTitle>
+                    <p>
+                      {calculatePerMeal(
+                        macroCalculator(totalCalories, macro.value),
+                        meals[this.state.mealPlan]
+                      )}
+                    </p>
+                  </Card>
+                );
+              })}
+            </CardRow>
+          </div>
+        </Container>
+      </>
     );
   }
 }
 
 const mapStateToProps = state => {
   return {
-    id: state.id,
     user: {
       username: state.user.username,
       id: state.user.id,
@@ -101,7 +118,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  {}
-)(MealPage);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    {}
+  )(MealPage)
+);

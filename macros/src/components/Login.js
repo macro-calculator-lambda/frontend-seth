@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import { Title, FormContainer, Form, Input, Button } from "../styles";
 import { login } from "../actions";
 
@@ -65,7 +66,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { login }
-)(Login);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { login }
+  )(Login)
+);

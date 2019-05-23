@@ -1,8 +1,30 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Container = styled.div`
-  margin: 0 auto;
+  margin: 2rem auto 0;
   max-width: 1200px;
+
+  ${props =>
+    props.textCenter &&
+    css`
+      text-align: center;
+    `};
+`;
+
+export const FlexContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+
+  ${props =>
+    props.center &&
+    css`
+      justify-content: center;
+      align-items: center;
+    `};
+`;
+
+export const FlexItem = styled.div`
+  margin: 2rem;
 `;
 
 export const Title = styled.h1`
@@ -13,6 +35,8 @@ export const FormContainer = styled.div`
   margin: 0 auto;
   max-width: 500px;
   text-align: center;
+  background: #fff;
+  padding: 1rem 0 3rem;
 `;
 
 export const Form = styled.form`
@@ -23,8 +47,8 @@ export const Form = styled.form`
 
 export const Input = styled.input`
   border: 0;
-  padding: 0.2rem 0.3rem;
-  border-bottom: 0.2rem solid black;
+  padding: 0.85rem 0.9rem;
+  border-bottom: 0.2rem solid #181718;
   display: block;
   margin: 0 auto 1.5rem;
   font-size: 1.4rem;
@@ -101,11 +125,38 @@ export const Option = styled.option`
 `;
 
 export const Button = styled.button`
-  padding: 0.5rem 1rem
-  font-size: 1.2rem;
+  padding: 0.8rem 2rem
+  font-size: 1.6rem;
   border-radius: 4px;
+  border: 0;
+  font-weight: bold;
+  background: #6F6FFF;
+  color: #fff;
+  transition: 0.24s opacity ease-in;
 
   &:hover {
     cursor: pointer;
+    opacity: 0.75;
   }
+
+  ${props =>
+    props.danger &&
+    css`
+      background: #ff4d4d;
+    `};
+
+    ${props =>
+      props.white &&
+      css`
+        background: #fff;
+        color: #333;
+      `};
+`;
+
+export const Card = styled.div`
+  box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.25);
+  background: #fff;
+  border-raidus: 5px;
+  padding: 2rem 2.5rem;
+  margin: 1.5rem 0 0;
 `;

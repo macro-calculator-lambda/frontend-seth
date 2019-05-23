@@ -5,6 +5,9 @@ import styled from "styled-components";
 
 const NavBar = styled.nav`
   background: #333;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 `;
 
 const NavContainer = styled.ul`
@@ -12,8 +15,11 @@ const NavContainer = styled.ul`
   list-style: none;
   padding: 1.4rem 0;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
   flex-wrap: wrap;
+  width: 350px;
+  max-width: 100%;
 `;
 
 const NavItem = styled.li`
@@ -33,13 +39,7 @@ const Navigation = () => {
     <NavBar>
       <NavContainer>
         <NavItem>
-          <NavElement to="/">Home</NavElement>
-        </NavItem>
-        <NavItem>
-          <NavElement to="/meal-page">Meal Breakdown</NavElement>
-        </NavItem>
-        <NavItem>
-          <NavElement to="/update-user">Update Weight/Macro</NavElement>
+          <NavElement to="/">Profile</NavElement>
         </NavItem>
         <NavItem>
           <NavElement to="/login">Login</NavElement>

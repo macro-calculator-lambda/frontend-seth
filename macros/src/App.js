@@ -17,6 +17,12 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     font-size: 62.5%;
   }
+
+  body {
+    background: #F6EBF4;
+    font-family: 'Muli', sans-serif;
+  }
+
   *, *:before, *:after {
     box-sizing: inherit;
   }

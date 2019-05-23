@@ -1,3 +1,3 @@
-# frontend-seth
-Repo for Seth Lachman
-Initial Test Commit
+# Macro Calculator
+
+Link to deployed site [https://macro-calculator.netlify.com/](https://macro-calculator.netlify.com/).

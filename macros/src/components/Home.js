@@ -1,13 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import { PieChart } from "react-chartkick";
 import Chart from "chart.js";
 import Loader from "react-loader-spinner";
 
 import { getUserInfo } from "../actions";
-import { Container, Title } from "../styles";
+import { Container, Title, FlexContainer, FlexItem, Card } from "../styles";
 
 import { calculateCalories, macroCalculator, macros } from "../utils";
+import SubNavigation from "./SubNavigation";
 
 class Home extends React.Component {
   componentDidMount() {
@@ -15,49 +17,59 @@ class Home extends React.Component {
   }
 
   render() {
-    if (!this.props.user) {
+    if (this.props.fetchingUser) {
       return (
-        <Container>
-          <Loader type="ThreeDots" color="#1f2a38" height="50" width="50" />
+        <Container textCenter>
+          <Loader type="ThreeDots" color="#8A42A9" height="200" width="200" />
         </Container>
       );
     }
     const totalCalories = calculateCalories(this.props.user);
 
     return (
-      <Container>
-        <Title>Home</Title>
-        <p />
-        <p>
-          Recommended Total Calories Per day for {this.props.user.username}:
-        </p>
-        <p>{Math.ceil(calculateCalories(this.props.user))}</p>
-        <div>
-          <h2>Macro Breakdown</h2>
-          {
-            <PieChart
-              data={macros.map(macro => {
-                return [
-                  macro.name,
-                  macroCalculator(totalCalories, macro.value)
-                ];
-              })}
-            />
-          }
-        </div>
-        <p>Macros: </p>
-        <ul>
-          {macros.map((macro, index) => {
-            return (
-              <li key={index}>
-                {macro.name}: {macroCalculator(totalCalories, macro.value)}{" "}
-                grams per day
-              </li>
-            );
-          })}
-        </ul>
-        <p />
-      </Container>
+      <>
+        <SubNavigation />
+        <Container>
+          <FlexContainer center>
+            <FlexItem>
+              <Card>
+                <Title>{this.props.user.username}</Title>
+                <p>
+                  Recommended Total Calories per day:{" "}
+                  {Math.ceil(calculateCalories(this.props.user))}
+                </p>
+                <h2>Macro Breakdown</h2>
+
+                <ul style={{ marginBottom: "3rem" }}>
+                  {macros.map((macro, index) => {
+                    return (
+                      <li key={index}>
+                        {macro.name}:{" "}
+                        {macroCalculator(totalCalories, macro.value)} grams per
+                        day
+                      </li>
+                    );
+                  })}
+                </ul>
+              </Card>
+            </FlexItem>
+            <FlexItem>
+              {
+                <PieChart
+                  colors={["#FF6666", "#6766FF", "#FFC04C"]}
+                  donut={true}
+                  data={macros.map(macro => {
+                    return [
+                      macro.name,
+                      macroCalculator(totalCalories, macro.value)
+                    ];
+                  })}
+                />
+              }
+            </FlexItem>
+          </FlexContainer>
+        </Container>
+      </>
     );
   }
 }
@@ -65,6 +77,7 @@ class Home extends React.Component {
 const mapStateToProps = state => {
   return {
     id: state.id,
+    fetchingUser: state.fetchingUser,
     user: {
       username: state.user.username,
       id: state.user.id,
@@ -78,7 +91,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { getUserInfo }
-)(Home);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { getUserInfo }
+  )(Home)
+);

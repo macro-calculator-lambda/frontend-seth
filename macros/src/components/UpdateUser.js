@@ -1,8 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import Loader from "react-loader-spinner";
 
-import { updateUser } from "../actions";
+import SubNavigation from "./SubNavigation";
+import { updateUser, deleteUser } from "../actions";
 import {
   Container,
   Title,
@@ -41,72 +43,90 @@ class UpdateUser extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.updateUser(this.state.user);
+    this.props.updateUser(this.state.user).then(() => {
+      this.props.history.push("/");
+    });
+  };
+
+  handleClick = event => {
+    event.preventDefault();
+    this.props.deleteUser(this.state.user.id).then(() => {
+      localStorage.clear();
+      this.props.history.push("/sign-up");
+    });
   };
 
   render() {
     if (this.state.user === "") {
       return (
-        <div>
-          <h2>Loading</h2>
-        </div>
+        <Container>
+          <Loader type="ThreeDots" color="#1f2a38" height="12" width="26" />
+        </Container>
       );
     }
 
     return (
-      <Container>
-        <FormContainer>
-          <Title>Update Your Goal or Current Weight</Title>
-          <Form onSubmit={this.handleSubmit}>
-            <SelectContainer>
-              <Label htmlFor="goal">Select your Goal:</Label>
-              <Select
+      <>
+        <SubNavigation />
+        <Container>
+          <FormContainer>
+            <Title>Update Your Goal or Current Weight</Title>
+            <Form onSubmit={this.handleSubmit}>
+              <SelectContainer>
+                <Label htmlFor="goal">Select your Goal:</Label>
+                <Select
+                  onChange={this.handleChange}
+                  value={this.state.user.goal}
+                  name="goal"
+                  id="goal"
+                >
+                  <Option value="">Select Goal</Option>
+                  <Option value="aggressive-loss">
+                    Agressive Weight Loss (20%)
+                  </Option>
+                  <Option value="moderate-loss">
+                    Moderate Weight Loss (15%)
+                  </Option>
+                  <Option value="small-loss">Weight Loss (10%)</Option>
+                  <Option value="maintain">Maintain Weight</Option>
+                  <Option value="moderate-gain">
+                    Moderate Weight Gain (10%)
+                  </Option>
+                  <Option value="aggressive-gain">
+                    Agressive Weight Gain (15%)
+                  </Option>
+                </Select>
+              </SelectContainer>
+
+              <Input
+                name="weight"
+                type="number"
                 onChange={this.handleChange}
-                value={this.state.user.goal}
-                name="goal"
-                id="goal"
-              >
-                <Option value="">Select Goal</Option>
-                <Option value="aggressive-loss">
-                  Agressive Weight Loss (20%)
-                </Option>
-                <Option value="moderate-loss">
-                  Moderate Weight Loss (15%)
-                </Option>
-                <Option value="small-loss">Weight Loss (10%)</Option>
-                <Option value="maintain">Maintain Weight</Option>
-                <Option value="moderate-gain">
-                  Moderate Weight Gain (10%)
-                </Option>
-                <Option value="aggressive-gain">
-                  Agressive Weight Gain (15%)
-                </Option>
-              </Select>
-            </SelectContainer>
+                placeholder="Update weight"
+                value={this.state.user.weight}
+              />
 
-            <Input
-              name="weight"
-              type="number"
-              onChange={this.handleChange}
-              placeholder="Update weight"
-              value={this.state.user.weight}
-            />
-
-            <Button>
-              {this.props.editingUser ? (
-                <Loader
-                  type="ThreeDots"
-                  color="#1f2a38"
-                  height="12"
-                  width="26"
-                />
-              ) : (
-                "Update Goals"
-              )}
-            </Button>
-          </Form>
-        </FormContainer>
-      </Container>
+              <Button>
+                {this.props.editingUser ? (
+                  <Loader
+                    type="ThreeDots"
+                    color="#1f2a38"
+                    height="12"
+                    width="26"
+                  />
+                ) : (
+                  "Update Goals"
+                )}
+              </Button>
+            </Form>
+            <div style={{ textAlign: "center", marginTop: "3rem" }}>
+              <Button danger onClick={this.handleClick}>
+                Delete Account
+              </Button>
+            </div>
+          </FormContainer>
+        </Container>
+      </>
     );
   }
 }
@@ -114,6 +134,9 @@ class UpdateUser extends React.Component {
 const mapStateToProps = state => {
   return {
     editingUser: state.editingUser,
+    response: state.response,
+    error: state.error,
+    deletingUser: state.deletingUser,
     user: {
       username: state.user.username,
       id: state.user.id,
@@ -127,7 +150,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { updateUser }
-)(UpdateUser);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { updateUser, deleteUser }
+  )(UpdateUser)
+);
