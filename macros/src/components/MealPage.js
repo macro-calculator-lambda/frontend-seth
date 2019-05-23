@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 
+import SubNavigation from "./SubNavigation";
+
 import {
   meals,
   calculateCalories,
@@ -59,35 +61,43 @@ class MealPage extends React.Component {
     const totalCalories = calculateCalories(this.props.user);
 
     return (
-      <Container>
-        <Title style={{ textAlign: "center" }}>Meal Breakdown</Title>
-        <SmallContainer>
-          <Select name="mealPlan" id="meal-select" onChange={this.handleChange}>
-            <Option value="">Choose a Meal Plan</Option>
-            <Option value="four">4 meals a day</Option>
-            <Option value="three">3 Meals Per day</Option>
-            <Option value="snack">3 Meals and 2 Snacks Per day</Option>
-          </Select>
-        </SmallContainer>
-        <div>
-          <SubTitle>Relevant Macros</SubTitle>
-          <CardRow>
-            {macros.map((macro, index) => {
-              return (
-                <Card key={index}>
-                  <CardTitle>{macro.name}</CardTitle>
-                  <p>
-                    {calculatePerMeal(
-                      macroCalculator(totalCalories, macro.value),
-                      meals[this.state.mealPlan]
-                    )}
-                  </p>
-                </Card>
-              );
-            })}
-          </CardRow>
-        </div>
-      </Container>
+      <>
+        <SubNavigation />
+        <Container>
+          <Title style={{ textAlign: "center" }}>Meal Breakdown</Title>
+
+          <SmallContainer>
+            <Select
+              name="mealPlan"
+              id="meal-select"
+              onChange={this.handleChange}
+            >
+              <Option value="">Choose a Meal Plan</Option>
+              <Option value="four">4 meals a day</Option>
+              <Option value="three">3 Meals Per day</Option>
+              <Option value="snack">3 Meals and 2 Snacks Per day</Option>
+            </Select>
+          </SmallContainer>
+          <div>
+            <SubTitle>Relevant Macros</SubTitle>
+            <CardRow>
+              {macros.map((macro, index) => {
+                return (
+                  <Card key={index}>
+                    <CardTitle>{macro.name}</CardTitle>
+                    <p>
+                      {calculatePerMeal(
+                        macroCalculator(totalCalories, macro.value),
+                        meals[this.state.mealPlan]
+                      )}
+                    </p>
+                  </Card>
+                );
+              })}
+            </CardRow>
+          </div>
+        </Container>
+      </>
     );
   }
 }

@@ -1,7 +1,5 @@
 import React from "react";
-import { NavLink, withRouter } from "react-router-dom";
-import { connect } from "react-redux";
-import { logOut } from "../actions";
+import { NavLink } from "react-router-dom";
 
 import styled from "styled-components";
 
@@ -30,48 +28,19 @@ const NavElement = styled(NavLink)`
   text-decoration: none;
 `;
 
-const handleClick = (event, props) => {
-  event.preventDefault();
-  localStorage.clear();
-  props.history.push("/login");
-};
-
-const Navigation = props => {
+const Navigation = () => {
   return (
     <NavBar>
       <NavContainer>
-        <NavItem>
-          <NavElement to="/">Home</NavElement>
-        </NavItem>
-        <NavItem>
-          <NavElement to="/meal-page">Meal Breakdown</NavElement>
-        </NavItem>
-        <NavItem>
-          <NavElement to="/update-user">Update Goal</NavElement>
-        </NavItem>
         <NavItem>
           <NavElement to="/login">Login</NavElement>
         </NavItem>
         <NavItem>
           <NavElement to="/sign-up">Sign Up</NavElement>
         </NavItem>
-        <NavItem>
-          <button onClick={event => handleClick(event, props)}>Logout</button>
-        </NavItem>
       </NavContainer>
     </NavBar>
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    loggedIn: state.loggedIn
-  };
-};
-
-export default withRouter(
-  connect(
-    mapStateToProps,
-    { logOut }
-  )(Navigation)
-);
+export default Navigation;

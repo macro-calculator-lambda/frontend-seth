@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
 
+import SubNavigation from "./SubNavigation";
 import { updateUser } from "../actions";
 import {
   Container,
@@ -57,59 +58,62 @@ class UpdateUser extends React.Component {
     }
 
     return (
-      <Container>
-        <FormContainer>
-          <Title>Update Your Goal or Current Weight</Title>
-          <Form onSubmit={this.handleSubmit}>
-            <SelectContainer>
-              <Label htmlFor="goal">Select your Goal:</Label>
-              <Select
+      <>
+        <SubNavigation />
+        <Container>
+          <FormContainer>
+            <Title>Update Your Goal or Current Weight</Title>
+            <Form onSubmit={this.handleSubmit}>
+              <SelectContainer>
+                <Label htmlFor="goal">Select your Goal:</Label>
+                <Select
+                  onChange={this.handleChange}
+                  value={this.state.user.goal}
+                  name="goal"
+                  id="goal"
+                >
+                  <Option value="">Select Goal</Option>
+                  <Option value="aggressive-loss">
+                    Agressive Weight Loss (20%)
+                  </Option>
+                  <Option value="moderate-loss">
+                    Moderate Weight Loss (15%)
+                  </Option>
+                  <Option value="small-loss">Weight Loss (10%)</Option>
+                  <Option value="maintain">Maintain Weight</Option>
+                  <Option value="moderate-gain">
+                    Moderate Weight Gain (10%)
+                  </Option>
+                  <Option value="aggressive-gain">
+                    Agressive Weight Gain (15%)
+                  </Option>
+                </Select>
+              </SelectContainer>
+
+              <Input
+                name="weight"
+                type="number"
                 onChange={this.handleChange}
-                value={this.state.user.goal}
-                name="goal"
-                id="goal"
-              >
-                <Option value="">Select Goal</Option>
-                <Option value="aggressive-loss">
-                  Agressive Weight Loss (20%)
-                </Option>
-                <Option value="moderate-loss">
-                  Moderate Weight Loss (15%)
-                </Option>
-                <Option value="small-loss">Weight Loss (10%)</Option>
-                <Option value="maintain">Maintain Weight</Option>
-                <Option value="moderate-gain">
-                  Moderate Weight Gain (10%)
-                </Option>
-                <Option value="aggressive-gain">
-                  Agressive Weight Gain (15%)
-                </Option>
-              </Select>
-            </SelectContainer>
+                placeholder="Update weight"
+                value={this.state.user.weight}
+              />
 
-            <Input
-              name="weight"
-              type="number"
-              onChange={this.handleChange}
-              placeholder="Update weight"
-              value={this.state.user.weight}
-            />
-
-            <Button>
-              {this.props.editingUser ? (
-                <Loader
-                  type="ThreeDots"
-                  color="#1f2a38"
-                  height="12"
-                  width="26"
-                />
-              ) : (
-                "Update Goals"
-              )}
-            </Button>
-          </Form>
-        </FormContainer>
-      </Container>
+              <Button>
+                {this.props.editingUser ? (
+                  <Loader
+                    type="ThreeDots"
+                    color="#1f2a38"
+                    height="12"
+                    width="26"
+                  />
+                ) : (
+                  "Update Goals"
+                )}
+              </Button>
+            </Form>
+          </FormContainer>
+        </Container>
+      </>
     );
   }
 }

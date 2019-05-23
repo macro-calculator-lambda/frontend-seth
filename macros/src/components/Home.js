@@ -8,6 +8,7 @@ import { getUserInfo, deleteUser } from "../actions";
 import { Container, Title } from "../styles";
 
 import { calculateCalories, macroCalculator, macros } from "../utils";
+import SubNavigation from "./SubNavigation";
 
 class Home extends React.Component {
   componentDidMount() {
@@ -33,39 +34,43 @@ class Home extends React.Component {
     const totalCalories = calculateCalories(this.props.user);
 
     return (
-      <Container>
-        <Title>Home</Title>
-        <p>
-          Recommended Total Calories Per day for {this.props.user.username}:
-        </p>
-        <p>{Math.ceil(calculateCalories(this.props.user))}</p>
-        <div>
-          <h2>Macro Breakdown</h2>
-          {
-            <PieChart
-              data={macros.map(macro => {
-                return [
-                  macro.name,
-                  macroCalculator(totalCalories, macro.value)
-                ];
-              })}
-            />
-          }
-        </div>
-        <p>Macros: </p>
-        <ul>
-          {macros.map((macro, index) => {
-            return (
-              <li key={index}>
-                {macro.name}: {macroCalculator(totalCalories, macro.value)}{" "}
-                grams per day
-              </li>
-            );
-          })}
-        </ul>
-        <p />
-        <button onClick={this.handleClick}>Delete Account</button>
-      </Container>
+      <>
+        <SubNavigation />
+        <Container>
+          <Title>Profile</Title>
+
+          <p>
+            Recommended Total Calories Per day for {this.props.user.username}:
+          </p>
+          <p>{Math.ceil(calculateCalories(this.props.user))}</p>
+          <div>
+            <h2>Macro Breakdown</h2>
+            {
+              <PieChart
+                data={macros.map(macro => {
+                  return [
+                    macro.name,
+                    macroCalculator(totalCalories, macro.value)
+                  ];
+                })}
+              />
+            }
+          </div>
+          <p>Macros: </p>
+          <ul>
+            {macros.map((macro, index) => {
+              return (
+                <li key={index}>
+                  {macro.name}: {macroCalculator(totalCalories, macro.value)}{" "}
+                  grams per day
+                </li>
+              );
+            })}
+          </ul>
+          <p />
+          <button onClick={this.handleClick}>Delete Account</button>
+        </Container>
+      </>
     );
   }
 }
