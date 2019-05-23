@@ -26,8 +26,8 @@ class Home extends React.Component {
   render() {
     if (this.props.fetchingUser) {
       return (
-        <Container>
-          <Loader type="ThreeDots" color="#1f2a38" height="50" width="50" />
+        <Container textCenter>
+          <Loader type="ThreeDots" color="#8A42A9" height="200" width="200" />
         </Container>
       );
     }
@@ -44,7 +44,6 @@ class Home extends React.Component {
                 Recommended Total Calories per day:{" "}
                 {Math.ceil(calculateCalories(this.props.user))}
               </p>
-
               <h2>Macro Breakdown</h2>
 
               <ul style={{ marginBottom: "3rem" }}>
@@ -58,10 +57,6 @@ class Home extends React.Component {
                   );
                 })}
               </ul>
-
-              <Button danger onClick={this.handleClick}>
-                Delete Account
-              </Button>
             </FlexItem>
             <FlexItem>
               {
@@ -76,6 +71,11 @@ class Home extends React.Component {
                   })}
                 />
               }
+              <div style={{ textAlign: "center", marginTop: "3rem" }}>
+                <Button danger onClick={this.handleClick}>
+                  Delete Account
+                </Button>
+              </div>
             </FlexItem>
           </FlexContainer>
         </Container>

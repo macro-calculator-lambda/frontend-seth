@@ -1,8 +1,14 @@
 import styled, { css } from "styled-components";
 
 export const Container = styled.div`
-  margin: 0 auto;
+  margin: 2rem auto 0;
   max-width: 1200px;
+
+  ${props =>
+    props.textCenter &&
+    css`
+      text-align: center;
+    `};
 `;
 
 export const FlexContainer = styled.div`
@@ -29,6 +35,8 @@ export const FormContainer = styled.div`
   margin: 0 auto;
   max-width: 500px;
   text-align: center;
+  background: #fff;
+  padding: 1rem 0 3rem;
 `;
 
 export const Form = styled.form`
@@ -39,8 +47,8 @@ export const Form = styled.form`
 
 export const Input = styled.input`
   border: 0;
-  padding: 0.2rem 0.3rem;
-  border-bottom: 0.2rem solid black;
+  padding: 0.85rem 0.9rem;
+  border-bottom: 0.2rem solid #181718;
   display: block;
   margin: 0 auto 1.5rem;
   font-size: 1.4rem;
@@ -136,4 +144,11 @@ export const Button = styled.button`
     css`
       background: #ff4d4d;
     `};
+
+    ${props =>
+      props.white &&
+      css`
+        background: #fff;
+        color: #333;
+      `};
 `;

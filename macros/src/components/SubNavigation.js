@@ -4,9 +4,10 @@ import { connect } from "react-redux";
 import { NavLink, withRouter } from "react-router-dom";
 
 import { logOut } from "../actions";
+import { Button } from "../styles";
 
 const SubNavContainer = styled.div`
-  background: #c3c3c3;
+  background: #8a42a9;
   padding: 1.5rem 0;
   display: flex;
   justify-content: center;
@@ -22,10 +23,18 @@ const SubNavItem = styled.li`
   margin: 0 1.5rem;
 `;
 
-const SubNavElement = styled(NavLink)`
+const activeClassName = "nav-item-active";
+
+const SubNavElement = styled(NavLink).attrs({
+  activeClassName
+})`
   text-decoration: none;
   color: #fff;
   font-weight: bold;
+
+  &.${activeClassName} {
+    border-bottom: 2px solid #fff;
+  }
 `;
 
 const handleClick = (event, props) => {
@@ -39,16 +48,15 @@ const SubNavigation = props => {
     <SubNavContainer>
       <SubNav>
         <SubNavItem>
-          <SubNavElement to="/">Profile</SubNavElement>
-        </SubNavItem>
-        <SubNavItem>
           <SubNavElement to="/meal-page">Macros per Meal</SubNavElement>
         </SubNavItem>
         <SubNavItem>
           <SubNavElement to="/update-user">Update Goals</SubNavElement>
         </SubNavItem>
         <SubNavItem>
-          <button onClick={event => handleClick(event, props)}>Logout</button>
+          <Button white onClick={event => handleClick(event, props)}>
+            Logout
+          </Button>
         </SubNavItem>
       </SubNav>
     </SubNavContainer>
