@@ -13,7 +13,8 @@ import {
   UPDATE_USER_FAIL,
   DELETE_USER_INITIALIZE,
   DELETE_USER_SUCCESS,
-  DELETE_USER_FAIL
+  DELETE_USER_FAIL,
+  LOGOUT_USER
 } from "../actions";
 
 const initialState = {
@@ -22,6 +23,7 @@ const initialState = {
   fetchingUser: false,
   editingUser: false,
   deletingUser: false,
+  loggedIn: false,
   error: "",
   id: "",
   response: "",
@@ -67,6 +69,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isLoggingIn: false,
+        loggedIn: true,
         id: action.payload
       };
     case LOGIN_FAIL:
@@ -121,6 +124,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         deletingUser: false
+      };
+    case LOGOUT_USER:
+      return {
+        ...state,
+        loggedIn: false
       };
     default:
       return state;

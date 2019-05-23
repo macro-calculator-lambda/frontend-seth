@@ -70,3 +70,9 @@ export const deleteUser = id => dispatch => {
     .then(res => dispatch({ type: DELETE_USER_SUCCESS }))
     .catch(err => dispatch({ type: DELETE_USER_FAIL }));
 };
+
+export const LOGOUT_USER = "LOGOUT_USER";
+
+export const logOut = () => dispatch => {
+  dispatch({ type: LOGOUT_USER });
+};
