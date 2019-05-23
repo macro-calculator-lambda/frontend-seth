@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
 
 import SubNavigation from "./SubNavigation";
-import { updateUser } from "../actions";
+import { updateUser, deleteUser } from "../actions";
 import {
   Container,
   Title,
@@ -44,6 +44,14 @@ class UpdateUser extends React.Component {
     event.preventDefault();
     this.props.updateUser(this.state.user).then(() => {
       this.props.history.push("/");
+    });
+  };
+
+  handleClick = event => {
+    event.preventDefault();
+    this.props.deleteUser(this.props.user.id).then(() => {
+      localStorage.clear();
+      this.props.history.push("/sign-up");
     });
   };
 
@@ -110,6 +118,11 @@ class UpdateUser extends React.Component {
                 )}
               </Button>
             </Form>
+            <div style={{ textAlign: "center", marginTop: "3rem" }}>
+              <Button danger onClick={this.handleClick}>
+                Delete Account
+              </Button>
+            </div>
           </FormContainer>
         </Container>
       </>
@@ -122,6 +135,7 @@ const mapStateToProps = state => {
     editingUser: state.editingUser,
     response: state.response,
     error: state.error,
+    deletingUser: state.deletingUser,
     user: {
       username: state.user.username,
       id: state.user.id,
@@ -137,5 +151,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { updateUser }
+  { updateUser, deleteUser }
 )(UpdateUser);

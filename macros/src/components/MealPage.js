@@ -12,7 +12,14 @@ import {
   macros
 } from "../utils";
 
-import { Container, Title, SelectContainer, Select, Option } from "../styles";
+import {
+  Container,
+  Title,
+  SelectContainer,
+  Select,
+  Option,
+  Card
+} from "../styles";
 
 const SmallContainer = styled(SelectContainer)`
   margin: 0 auto 1.5rem;
@@ -28,13 +35,6 @@ const CardRow = styled.div`
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-`;
-
-const Card = styled.div`
-  box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.15);
-  background: #fff;
-  padding: 2rem 2.5rem;
-  margin: 1.5rem 0 0;
 `;
 
 const CardTitle = styled.h4`

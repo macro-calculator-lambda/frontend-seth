@@ -16,11 +16,17 @@ const SubNavContainer = styled.div`
 const SubNav = styled.ul`
   margin: 0;
   list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 590px;
+  max-width: 100%;
 `;
 
 const SubNavItem = styled.li`
   display: inline-block;
   margin: 0 1.5rem;
+  text-align: center;
 `;
 
 const activeClassName = "nav-item-active";

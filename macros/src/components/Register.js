@@ -104,6 +104,9 @@ class Register extends React.Component {
               value={this.state.userInfo.height}
             >
               <Option value="">Height</Option>
+              <Option value="60">5'</Option>
+              <Option value="61">5' 1"</Option>
+              <Option value="62">5' 2"</Option>
               <Option value="63">5' 3"</Option>
               <Option value="64">5' 4"</Option>
               <Option value="65">5' 5"</Option>
@@ -114,6 +117,12 @@ class Register extends React.Component {
               <Option value="70">5' 10"</Option>
               <Option value="71">5' 11"</Option>
               <Option value="72">6'</Option>
+              <Option value="73">6' 1"</Option>
+              <Option value="74">6' 2"</Option>
+              <Option value="75">6' 3"</Option>
+              <Option value="76">6' 4"</Option>
+              <Option value="77">6' 5"</Option>
+              <Option value="78">6' 6"</Option>
             </Select>
           </SelectContainer>
 

@@ -152,3 +152,11 @@ export const Button = styled.button`
         color: #333;
       `};
 `;
+
+export const Card = styled.div`
+  box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.25);
+  background: #fff;
+  border-raidus: 5px;
+  padding: 2rem 2.5rem;
+  margin: 1.5rem 0 0;
+`;

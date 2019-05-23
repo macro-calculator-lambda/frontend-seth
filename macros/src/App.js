@@ -20,6 +20,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     background: #F6EBF4;
+    font-family: 'Muli', sans-serif;
   }
 
   *, *:before, *:after {

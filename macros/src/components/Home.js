@@ -4,8 +4,8 @@ import { PieChart } from "react-chartkick";
 import Chart from "chart.js";
 import Loader from "react-loader-spinner";
 
-import { getUserInfo, deleteUser } from "../actions";
-import { Container, Title, Button, FlexContainer, FlexItem } from "../styles";
+import { getUserInfo } from "../actions";
+import { Container, Title, FlexContainer, FlexItem, Card } from "../styles";
 
 import { calculateCalories, macroCalculator, macros } from "../utils";
 import SubNavigation from "./SubNavigation";
@@ -14,14 +14,6 @@ class Home extends React.Component {
   componentDidMount() {
     this.props.getUserInfo(localStorage.getItem("id"));
   }
-
-  handleClick = event => {
-    event.preventDefault();
-    this.props.deleteUser(this.props.user.id).then(() => {
-      localStorage.clear();
-      this.props.history.push("/sign-up");
-    });
-  };
 
   render() {
     if (this.props.fetchingUser) {
@@ -39,24 +31,26 @@ class Home extends React.Component {
         <Container>
           <FlexContainer center>
             <FlexItem>
-              <Title>{this.props.user.username}</Title>
-              <p>
-                Recommended Total Calories per day:{" "}
-                {Math.ceil(calculateCalories(this.props.user))}
-              </p>
-              <h2>Macro Breakdown</h2>
+              <Card>
+                <Title>{this.props.user.username}</Title>
+                <p>
+                  Recommended Total Calories per day:{" "}
+                  {Math.ceil(calculateCalories(this.props.user))}
+                </p>
+                <h2>Macro Breakdown</h2>
 
-              <ul style={{ marginBottom: "3rem" }}>
-                {macros.map((macro, index) => {
-                  return (
-                    <li key={index}>
-                      {macro.name}:{" "}
-                      {macroCalculator(totalCalories, macro.value)} grams per
-                      day
-                    </li>
-                  );
-                })}
-              </ul>
+                <ul style={{ marginBottom: "3rem" }}>
+                  {macros.map((macro, index) => {
+                    return (
+                      <li key={index}>
+                        {macro.name}:{" "}
+                        {macroCalculator(totalCalories, macro.value)} grams per
+                        day
+                      </li>
+                    );
+                  })}
+                </ul>
+              </Card>
             </FlexItem>
             <FlexItem>
               {
@@ -71,11 +65,6 @@ class Home extends React.Component {
                   })}
                 />
               }
-              <div style={{ textAlign: "center", marginTop: "3rem" }}>
-                <Button danger onClick={this.handleClick}>
-                  Delete Account
-                </Button>
-              </div>
             </FlexItem>
           </FlexContainer>
         </Container>
@@ -88,7 +77,6 @@ const mapStateToProps = state => {
   return {
     id: state.id,
     fetchingUser: state.fetchingUser,
-    deletingUser: state.deletingUser,
     user: {
       username: state.user.username,
       id: state.user.id,
@@ -104,5 +92,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getUserInfo, deleteUser }
+  { getUserInfo }
 )(Home);
