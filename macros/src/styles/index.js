@@ -73,15 +73,15 @@ export const Select = styled.select`
   display: block;
   font-size: 1.3rem;
   font-weight: 700;
-  color: #444;
+  color: #333;
   line-height: 1.3;
-  padding: 0.6em 1.4em 0.5em 0.8em;
+  padding: 0.8em 1.1em 0.8em 0.6em;
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
   margin: 0;
   border: 1px solid #aaa;
-  box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 0 0px rgba(0, 0, 0, 0.09);
   border-radius: 0.5em;
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -154,9 +154,15 @@ export const Button = styled.button`
 `;
 
 export const Card = styled.div`
-  box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: 0 15px 28px 0 rgba(0, 0, 0, 0.35);
   background: #fff;
-  border-raidus: 5px;
+  border-radius: 5px;
   padding: 2rem 2.5rem;
   margin: 1.5rem 0 0;
+`;
+
+export const CardList = styled.ul`
+  padding-left: 0;
+  list-style: none;
+  margin-bottom: 3rem;
 `;

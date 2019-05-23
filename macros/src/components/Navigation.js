@@ -32,6 +32,10 @@ const NavElement = styled(NavLink)`
   color: #f9f9f9;
   font-weight: bold;
   text-decoration: none;
+
+  @media (max-width: 450px) {
+    font-size: 1.3rem;
+  }
 `;
 
 const Navigation = () => {

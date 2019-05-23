@@ -161,14 +161,14 @@ class Register extends React.Component {
             >
               <Option value="">Goal</Option>
               <Option value="aggressive-loss">
-                Agressive Weight Loss (20%)
+                Aggressive Weight Loss (20%)
               </Option>
               <Option value="moderate-loss">Moderate Weight Loss (15%)</Option>
               <Option value="small-loss">Weight Loss (10%)</Option>
               <Option value="maintain">Maintain Weight</Option>
               <Option value="moderate-gain">Moderate Weight Gain (10%)</Option>
               <Option value="aggressive-gain">
-                Agressive Weight Gain (15%)
+                Aggressive Weight Gain (15%)
               </Option>
             </Select>
           </SelectContainer>

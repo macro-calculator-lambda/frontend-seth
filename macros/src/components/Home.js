@@ -6,7 +6,14 @@ import Chart from "chart.js";
 import Loader from "react-loader-spinner";
 
 import { getUserInfo } from "../actions";
-import { Container, Title, FlexContainer, FlexItem, Card } from "../styles";
+import {
+  Container,
+  Title,
+  FlexContainer,
+  FlexItem,
+  Card,
+  CardList
+} from "../styles";
 
 import { calculateCalories, macroCalculator, macros } from "../utils";
 import SubNavigation from "./SubNavigation";
@@ -20,7 +27,7 @@ class Home extends React.Component {
     if (this.props.fetchingUser) {
       return (
         <Container textCenter>
-          <Loader type="ThreeDots" color="#8A42A9" height="200" width="200" />
+          <Loader type="Circles" color="#8A42A9" height="200" width="200" />
         </Container>
       );
     }
@@ -35,22 +42,22 @@ class Home extends React.Component {
               <Card>
                 <Title>{this.props.user.username}</Title>
                 <p>
-                  Recommended Total Calories per day:{" "}
+                  Recommended Daily Caloric Intake:{" "}
                   {Math.ceil(calculateCalories(this.props.user))}
                 </p>
                 <h2>Macro Breakdown</h2>
 
-                <ul style={{ marginBottom: "3rem" }}>
+                <CardList>
                   {macros.map((macro, index) => {
                     return (
-                      <li key={index}>
-                        {macro.name}:{" "}
+                      <li key={index} style={{ marginBottom: "0.8rem" }}>
+                        <strong>{macro.name}</strong>:{" "}
                         {macroCalculator(totalCalories, macro.value)} grams per
                         day
                       </li>
                     );
                   })}
-                </ul>
+                </CardList>
               </Card>
             </FlexItem>
             <FlexItem>

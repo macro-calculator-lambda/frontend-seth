@@ -19,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background: #F6EBF4;
+    background: #FCF9FB;
     font-family: 'Muli', sans-serif;
   }
 
