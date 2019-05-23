@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import { PieChart } from "react-chartkick";
 import Chart from "chart.js";
 import Loader from "react-loader-spinner";
@@ -90,7 +91,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { getUserInfo }
-)(Home);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { getUserInfo }
+  )(Home)
+);

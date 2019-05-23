@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import Loader from "react-loader-spinner";
 
 import SubNavigation from "./SubNavigation";
@@ -49,7 +50,7 @@ class UpdateUser extends React.Component {
 
   handleClick = event => {
     event.preventDefault();
-    this.props.deleteUser(this.props.user.id).then(() => {
+    this.props.deleteUser(this.state.user.id).then(() => {
       localStorage.clear();
       this.props.history.push("/sign-up");
     });
@@ -149,7 +150,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { updateUser, deleteUser }
-)(UpdateUser);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { updateUser, deleteUser }
+  )(UpdateUser)
+);

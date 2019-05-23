@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 
 import SubNavigation from "./SubNavigation";
@@ -117,7 +118,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  {}
-)(MealPage);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    {}
+  )(MealPage)
+);

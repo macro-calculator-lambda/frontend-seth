@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 import { signup } from "../actions";
 import {
@@ -179,7 +180,9 @@ class Register extends React.Component {
   }
 }
 
-export default connect(
-  null,
-  { signup }
-)(Register);
+export default withRouter(
+  connect(
+    null,
+    { signup }
+  )(Register)
+);
