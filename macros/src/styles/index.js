@@ -1,8 +1,24 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Container = styled.div`
   margin: 0 auto;
   max-width: 1200px;
+`;
+
+export const FlexContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+
+  ${props =>
+    props.center &&
+    css`
+      justify-content: center;
+      align-items: center;
+    `};
+`;
+
+export const FlexItem = styled.div`
+  margin: 0 20px;
 `;
 
 export const Title = styled.h1`
@@ -101,11 +117,23 @@ export const Option = styled.option`
 `;
 
 export const Button = styled.button`
-  padding: 0.5rem 1rem
-  font-size: 1.2rem;
+  padding: 0.8rem 2rem
+  font-size: 1.6rem;
   border-radius: 4px;
+  border: 0;
+  font-weight: bold;
+  background: #6F6FFF;
+  color: #fff;
+  transition: 0.24s opacity ease-in;
 
   &:hover {
     cursor: pointer;
+    opacity: 0.75;
   }
+
+  ${props =>
+    props.danger &&
+    css`
+      background: #ff4d4d;
+    `};
 `;

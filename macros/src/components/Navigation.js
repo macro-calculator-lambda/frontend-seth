@@ -33,6 +33,9 @@ const Navigation = () => {
     <NavBar>
       <NavContainer>
         <NavItem>
+          <NavElement to="/">Home</NavElement>
+        </NavItem>
+        <NavItem>
           <NavElement to="/login">Login</NavElement>
         </NavItem>
         <NavItem>

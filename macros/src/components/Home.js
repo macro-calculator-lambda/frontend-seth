@@ -5,7 +5,7 @@ import Chart from "chart.js";
 import Loader from "react-loader-spinner";
 
 import { getUserInfo, deleteUser } from "../actions";
-import { Container, Title } from "../styles";
+import { Container, Title, Button, FlexContainer, FlexItem } from "../styles";
 
 import { calculateCalories, macroCalculator, macros } from "../utils";
 import SubNavigation from "./SubNavigation";
@@ -37,38 +37,47 @@ class Home extends React.Component {
       <>
         <SubNavigation />
         <Container>
-          <Title>Profile</Title>
+          <FlexContainer center>
+            <FlexItem>
+              <Title>{this.props.user.username}</Title>
+              <p>
+                Recommended Total Calories per day:{" "}
+                {Math.ceil(calculateCalories(this.props.user))}
+              </p>
 
-          <p>
-            Recommended Total Calories Per day for {this.props.user.username}:
-          </p>
-          <p>{Math.ceil(calculateCalories(this.props.user))}</p>
-          <div>
-            <h2>Macro Breakdown</h2>
-            {
-              <PieChart
-                data={macros.map(macro => {
-                  return [
-                    macro.name,
-                    macroCalculator(totalCalories, macro.value)
-                  ];
+              <h2>Macro Breakdown</h2>
+
+              <ul style={{ marginBottom: "3rem" }}>
+                {macros.map((macro, index) => {
+                  return (
+                    <li key={index}>
+                      {macro.name}:{" "}
+                      {macroCalculator(totalCalories, macro.value)} grams per
+                      day
+                    </li>
+                  );
                 })}
-              />
-            }
-          </div>
-          <p>Macros: </p>
-          <ul>
-            {macros.map((macro, index) => {
-              return (
-                <li key={index}>
-                  {macro.name}: {macroCalculator(totalCalories, macro.value)}{" "}
-                  grams per day
-                </li>
-              );
-            })}
-          </ul>
-          <p />
-          <button onClick={this.handleClick}>Delete Account</button>
+              </ul>
+
+              <Button danger onClick={this.handleClick}>
+                Delete Account
+              </Button>
+            </FlexItem>
+            <FlexItem>
+              {
+                <PieChart
+                  colors={["#FF6666", "#6766FF", "#FFC04C"]}
+                  donut={true}
+                  data={macros.map(macro => {
+                    return [
+                      macro.name,
+                      macroCalculator(totalCalories, macro.value)
+                    ];
+                  })}
+                />
+              }
+            </FlexItem>
+          </FlexContainer>
         </Container>
       </>
     );
