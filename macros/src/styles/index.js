@@ -1,4 +1,32 @@
-import styled, { css } from "styled-components";
+import styled, { css, createGlobalStyle } from "styled-components";
+
+export const GlobalStyle = createGlobalStyle`
+  html, body {
+    height: 100%;
+  }
+
+  html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+  }
+
+  body {
+    background: #FCF9FB;
+    font-family: 'Muli', sans-serif;
+  }
+
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+
+  p {
+    font-size: 1.6rem;
+  }
+
+  li {
+    font-size: 1.5rem;
+  }
+`;
 
 export const Container = styled.div`
   margin: 4rem auto 0;
@@ -48,19 +76,19 @@ export const Form = styled.form`
 export const Input = styled.input`
   border: 0;
   padding: 0.85rem 0.9rem;
-  border-bottom: 0.2rem solid #181718;
+  border-bottom: 0.3rem solid #181718;
   display: block;
-  margin: 0 auto 1.5rem;
+  margin: 0 auto 2.5rem;
   font-size: 1.4rem;
   transition: 0.3s all ease-in-out;
   &:focus {
     outline: none;
-    border-bottom: 0.2rem solid #333;
+    border-bottom: 0.3rem solid #8a42a9;
   }
 `;
 
 export const SelectContainer = styled.div`
-  margin: 0 0 1.5rem;
+  margin: 0 0 2.5rem;
 `;
 
 export const Label = styled.label`
@@ -103,7 +131,7 @@ export const Select = styled.select`
   /* Focus style */
   &:focus {
     border-color: #aaa;
-    box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
+    box-shadow: 0 0 1px 3px rgba(138, 66, 169, 0.7);
     box-shadow: 0 0 0 3px -moz-mac-focusring;
     color: #222;
     outline: none;

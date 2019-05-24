@@ -1,8 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import styled, { createGlobalStyle } from "styled-components";
-
 import Navigation from "./components/Navigation";
 import Home from "./components/Home";
 import Login from "./components/Login";
@@ -10,35 +8,7 @@ import Register from "./components/Register";
 import MealPage from "./components/MealPage";
 import UpdateUser from "./components/UpdateUser";
 import PrivateRoute from "./components/PrivateRoute";
-import "./App.css";
-
-const GlobalStyle = createGlobalStyle`
-  html, body {
-    height: 100%;
-  }
-
-  html {
-    box-sizing: border-box;
-    font-size: 62.5%;
-  }
-
-  body {
-    background: #FCF9FB;
-    font-family: 'Muli', sans-serif;
-  }
-
-  *, *:before, *:after {
-    box-sizing: inherit;
-  }
-
-  p {
-    font-size: 1.6rem;
-  }
-
-  li {
-    font-size: 1.5rem;
-  }
-`;
+import { GlobalStyle } from "./styles";
 
 const App = () => {
   return (
